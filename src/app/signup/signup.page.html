@@ -1,0 +1,720 @@
+
+<ion-content >
+
+<!-- Banner -->
+<div class="banners">
+  <img class="banner-style" src="assets/img/Login-Image.jpg" />
+</div>
+
+<!-- Page Swiper -->
+<ion-toolbar>
+  <ion-segment [(ngModel)]="segment" class="segment" color="secondary" scrollable>
+    <ion-segment-button value="0"  class="seg">
+      <b>LOG IN</b>
+    </ion-segment-button>
+   
+    <ion-segment-button value="1" class="seg1">
+      <b> Signup </b>
+    </ion-segment-button>
+
+  <!--   <ion-segment-button value="2" class="seg2">
+      <b>vendor </b>
+    </ion-segment-button> -->
+  </ion-segment>
+</ion-toolbar>
+
+  <div [ngSwitch]="segment" class="ion-padding">
+    <!-- lOGiN pAGE -->
+      <div class="sign-container" *ngSwitchCase="0">
+        <form [formGroup]="loginform" autocomplete="off" novalidate (ngSubmit)="login()" class="sign-form">
+          <mat-error>
+            {{error}}
+          </mat-error>
+          <mat-form-field style="width: 100%; color:black;">
+            <input matInput placeholder="Enter your Username" [(ngModel)]=" userlog.username"  formControlName="username" name="username" type="text" required [class.error1]="!loginform.controls.username.valid && loginform.controls.username.dirty">
+            <mat-error *ngIf="loginform.get('username').hasError('required') && loginform.get('username').touched" >
+              Please enter your Username
+            </mat-error>            
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+          
+             <mat-form-field style="width: 100%; color:black;  margin-bottom: 10%;">
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]=" userlog.password" formControlName="password" name="password"  required [class.error1]="!loginform.controls.password.valid && loginform.controls.password.dirty">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+            <mat-error *ngIf="loginform.get('password').hasError('required') && loginform.get('password').touched" >
+              Please enter your password
+            </mat-error>
+         
+          </mat-form-field>
+          <p text-center tappable routerLink="/login" routerDirection="forward" class="paz" style="text-align: center;">
+            <ion-text color="dark">
+              <br> <strong>Login with mobile number?</strong>
+            </ion-text>
+          </p>
+         
+          <div class="button"  routerDirection="root">
+            <ion-button type="submit" expand="full" class="bgcolor" [disabled]="!loginform.valid" >Log In</ion-button>
+
+        
+            <!-- <button mat-flat-button style="width: 100%;  background: black; color:white">Log In</button> -->
+          </div> 
+
+        <p text-center tappable routerLink="/forget-password" routerDirection="forward" class="paz" style="text-align: center;">
+         
+<!--  <p text-center tappable (click)="forgotPass()" routerDirection="forward" class="paz" style="text-align: center;">
+ -->            <ion-text color="dark">
+              <br> <strong>Forgot Password?</strong>
+            </ion-text>
+          </p>
+        
+        </form>
+      </div>
+  <!-- SIGN UP PAGE Dealer -->
+    <div class="sign-container" *ngSwitchCase="1" >
+      <form [formGroup]="delerform" autocomplete="off" novalidate (ngSubmit)="createdeler(delerform.value)" fxLayout="column wrap"
+      fxLayoutAlign="center center" fxLayoutGap="10px">
+        <h4 class="title icon-green-color">SIGNUP NOW</h4>
+
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter your Business Name" type="text" [(ngModel)]="user1.cf_891"
+          formControlName="cf_891" name="cf_891" required [class.error1]="!delerform.controls.cf_891.valid && delerform.controls.cf_891.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('cf_891').hasError('required') && delerform.get('cf_891').touched" >
+            Please enter your Business Name
+          </mat-error>
+         
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%; color:black;">
+          <mat-select placeholder="Select Business Type" [(ngModel)]="user1.cf_887"
+          formControlName="cf_887" name="cf_887" required [class.error1]="!delerform.controls.cf_887.valid && delerform.controls.cf_887.dirty" >
+            <mat-option>Select Business Type</mat-option>
+            <mat-option  value="Proprietorship">        
+              PROPRIETORSHIP     
+            </mat-option>
+            <mat-option  value="pvt ltd">        
+              PVT LTD     
+            </mat-option>
+            <mat-option  value="Partnership">        
+              PARTNERSHIP     
+            </mat-option>
+            <mat-option  value="LLP">        
+              LLP     
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="delerform.get('cf_887').hasError('required') && delerform.get('cf_887').touched" >
+            Please choose an Business Type</mat-error>
+         
+        </mat-form-field>
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter your Name" type="text" [(ngModel)]="user1.accountname"
+           formControlName="accountname" name="accountname" required [class.error1]="!delerform.controls.accountname.valid && delerform.controls.accountname.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('accountname').hasError('required') && delerform.get('accountname').touched" >
+            Please enter your Dealer Name
+          </mat-error>
+          <mat-error *ngIf="delerform.get('accountname').hasError('minlength') && delerform.get('accountname').touched">
+            Minimum 3 characters
+          </mat-error>
+        </mat-form-field>
+
+       <!--  <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter your Last Name" type="text" [(ngModel)]="user1.cf_885"
+          formControlName="cf_885" name="cf_885" required [class.error1]="!delerform.controls.cf_885.valid && delerform.controls.cf_885.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <mat-error *ngIf="delerform.get('cf_885').hasError('required') && delerform.get('cf_885').touched">
+            Please enter your Last Name
+          </mat-error>
+          <mat-error *ngIf="delerform.get('cf_885').hasError('minlength') && delerform.get('cf_885').touched">
+            Minimum 3 characters
+          </mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter your Mobile Number" maxlength="10" type="tel" [(ngModel)]="user1.phone"
+          formControlName="phone" name="phone" required [class.error1]="!delerform.controls.phone.valid && delerform.controls.phone.dirty" >
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('phone').hasError('required') && delerform.get('phone').touched" >
+            Please enter your Registered Mobile Number
+          </mat-error>
+          <mat-error *ngIf="delerform.get('phone').hasError('minlength') && delerform.get('phone').touched">
+            Minimum 10 characters
+          </mat-error>
+          <mat-error *ngIf="delerform.get('phone').hasError('maxlength') && delerform.get('phone').touched">
+            Maximum 10 characters
+          </mat-error>
+          <mat-error *ngIf="delerform.get('phone').hasError('pattern') && delerform.get('phone').touched">
+            Mobile Number is Invalid!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the Email ID" type="email" [(ngModel)]="user1.email1" formControlName="email1" name="email1" required [class.error1]="!delerform.controls.email1.valid && delerform.controls.email1.dirty" autocapitalize="characters">
+          <mat-error *ngIf="delerform.get('email1').hasError('required') && delerform.get('email1').touched" >
+            Please enter your Email Address
+          </mat-error>
+          <mat-error *ngIf="delerform.get('email1').hasError('email') && delerform.get('email1').touched" >
+            Not a valid email         
+          
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the GSTIN Number" type="text" [(ngModel)]="user1.cf_889"
+          formControlName="cf_889" name="cf_889" required [class.error1]="!delerform.controls.cf_889.valid && delerform.controls.cf_889.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('cf_889').hasError('required') && delerform.get('cf_889').touched" >
+            Please enter your GSTIN Number
+          </mat-error>
+          <mat-error *ngIf="delerform.get('cf_889').hasError('pattern') && delerform.get('cf_889').touched" >
+
+            GSTN Number is Invalid!
+          </mat-error>
+        </mat-form-field>
+
+
+          <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the Pan Card" type="text" [(ngModel)]="user1.cf_873"
+          formControlName="cf_873" name="cf_873" required [class.error1]="!delerform.controls.cf_873.valid && delerform.controls.cf_873.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('cf_873').hasError('required') && delerform.get('cf_873').touched" >
+            Please enter Pan Card
+          </mat-error>
+         
+          <mat-error *ngIf="delerform.get('cf_873').hasError('pattern') && delerform.get('cf_873').touched" >
+            Pancard Number is not valid!
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter your Username" type="text" [(ngModel)]="user1.cf_893"
+          formControlName="cf_893" name="cf_893" required [class.error1]="!delerform.controls.cf_893.valid && delerform.controls.cf_893.dirty">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('cf_893').hasError('required') && delerform.get('cf_893').touched" >
+            Please enter your Username
+          </mat-error>
+          <mat-error *ngIf="delerform.get('cf_893').hasError('minlength') && delerform.get('cf_893').touched">
+            Minimum 3 characters
+          </mat-error>
+          <mat-error *ngIf="delerform.get('cf_893').hasError('pattern') && delerform.get('cf_893').touched">
+            Username cannot contain whitespace
+           </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter your Password" type="password" [(ngModel)]="user1.cf_895"
+          formControlName="cf_895" name="cf_895" required [class.error1]="!delerform.controls.cf_895.valid && delerform.controls.cf_895.dirty">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('cf_895').hasError('required') && delerform.get('cf_895').touched" >
+            Please enter your Password
+          </mat-error>
+          <mat-error *ngIf="delerform.get('cf_895').hasError('minlength') && delerform.get('cf_895').touched">
+            Minimum 4 characters
+          </mat-error>
+          <mat-error *ngIf="delerform.get('cf_895').hasError('pattern') && delerform.get('cf_895').touched">
+           Password cannot contain whitespace
+          </mat-error>
+        </mat-form-field>
+
+       
+
+        <!-- <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter your Business Type"  type="text" [(ngModel)]="user1.cf_887"
+          formControlName="cf_887" name="cf_887" required [class.error1]="!delerform.controls.cf_887.valid && delerform.controls.cf_887.dirty">
+          <mat-error *ngIf="delerform.get('cf_887').hasError('required') && delerform.get('cf_887').touched" >
+            Please enter your Business Type
+          </mat-error>
+          <mat-error *ngIf="delerform.get('cf_887').hasError('minlength') && delerform.get('cf_887').touched">
+            Minimum 4 characters
+          </mat-error>
+        </mat-form-field> -->
+
+<b>Address</b>
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the Shop No" type="text" [(ngModel)]="user1.shopno"  formControlName="shopno" name="shopno"  [class.error1]="!delerform.controls.shopno.valid && delerform.controls.shopno.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          
+         
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the Road/Cross" type="text" [(ngModel)]="user1.bill_street"           formControlName="bill_street" name="bill_street" required [class.error1]="!delerform.controls.bill_street.valid && delerform.controls.bill_street.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('bill_street').hasError('required') && delerform.get('bill_street').touched" >
+            Please enter your Road/Cross detail
+          </mat-error>
+          <mat-error *ngIf="delerform.get('bill_street').hasError('minlength') && delerform.get('bill_street').touched">
+            Minimum 4 characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the Landmark" type="text" [(ngModel)]="user1.landmark"           formControlName="landmark" name="landmark" required [class.error1]="!delerform.controls.landmark.valid && delerform.controls.landmark.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('landmark').hasError('required') && delerform.get('landmark').touched" >
+            Please enter your Landmark
+          </mat-error>
+        
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the City" type="text" [(ngModel)]="user1.bill_city" formControlName="bill_city" name="bill_city" required [class.error1]="!delerform.controls.bill_city.valid && delerform.controls.bill_city.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('bill_city').hasError('required') && delerform.get('bill_city').touched" >
+            Please enter your City
+          </mat-error>
+        
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the Pincode" type="text" [(ngModel)]="user1.bill_code" formControlName="bill_code" name="bill_code" required [class.error1]="!delerform.controls.bill_code.valid && delerform.controls.bill_code.dirty" autocapitalize="characters" style="text-transform: uppercase;"  (input)="onPincodeChange()">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('bill_code').hasError('required') && delerform.get('bill_code').touched" >
+            Please enter your Pincode
+          </mat-error>
+          <mat-error *ngIf="delerform.get('bill_code').hasError('pattern') && delerform.get('bill_code').touched">
+            Pincode is Invalid
+          </mat-error>
+          <mat-error *ngIf="delerform.get('bill_code').hasError('minlength') && delerform.get('bill_code').touched">
+            Pincode can't Be less Than 6 digit
+          </mat-error>
+          <mat-error *ngIf="delerform.get('bill_code').hasError('maxlength') && delerform.get('bill_code').touched">
+            Pincode can't Be More Than 6 digit
+          </mat-error>
+       <!--    <mat-error *ngIf="delerform.get('bill_code').hasError('pincodeerror') && delerform.get('bill_code').touched">
+            pincodeerror is Invalid
+          </mat-error> -->
+        
+          
+        </mat-form-field>
+
+       
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the Taluk" type="text" [(ngModel)]="user1.taluk" formControlName="taluk" name="taluk" required [class.error1]="!delerform.controls.taluk.valid && delerform.controls.taluk.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('taluk').hasError('required') && delerform.get('taluk').touched" >
+            Please enter your Taluk
+          </mat-error>
+        
+        </mat-form-field>
+
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the District" type="text" [(ngModel)]="user1.district" formControlName="district" name="district" required [class.error1]="!delerform.controls.district.valid && delerform.controls.district.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('district').hasError('required') && delerform.get('district').touched" >
+            Please enter your District
+          </mat-error>
+        
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%; color:black;">
+          <input matInput placeholder="Enter the State" type="text" [(ngModel)]="user1.bill_state" formControlName="bill_state" name="bill_state" required [class.error1]="!delerform.controls.bill_state.valid && delerform.controls.bill_state.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="delerform.get('bill_state').hasError('required') && delerform.get('bill_state').touched" >
+            Please enter your State
+          </mat-error>
+        
+        </mat-form-field>
+
+
+      
+<div class="file">
+  <label style="color: black;">GSTIN Certificate (Upload PDF or JPEG ; Max 3MB)</label> 
+         <ion-input  style="margin-left: 4px;" type="file" id="myfile" 
+         formControlName="myfile" name="myfile" required [class.error1]="!delerform.controls.myfile.valid && delerform.controls.myfile.dirty"  accept="image/jpeg, image/jpg,application/pdf" (change)="changeGst($event)" ></ion-input>
+         <mat-error *ngIf="delerform.get('myfile').hasError('required') && delerform.get('myfile').touched" >
+          Please upload GSTN Certificate
+        </mat-error>
+</div>
+        <!-- <mat-form-field style="width: 100%; color:black;"> -->
+       
+            <br>  <br>
+          <!-- <mat-error *ngIf="passFormControl.hasError('required')">
+            please enter your GSTN certificate
+          </mat-error>
+          <mat-error *ngIf="passFormControl.hasError('minlength')">
+            minimum 4 characters
+          </mat-error> -->
+        <!-- </mat-form-field> -->
+
+
+
+     
+<div class="file">
+
+  <label style="color: black;">Visiting Card (Upload PDF or JPEG ; Max 3MB)</label>  
+<br>  <ion-button (click)="getcamera()"
+  id="myfile1"  name="myfile1"  
+  formControlName="myfile1"  
+  (change)="changeVcard($event)" 
+  [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
+  accept="image/jpeg, image/jpg,application/pdf">
+  <ion-icon name="camera-outline"></ion-icon></ion-button>
+  
+  <!-- <input type="file" accept="image/*;capture=camera"
+  id="myfile1"  name="myfile1"  
+  formControlName="myfile1"  
+  (change)="changeVcard($event)" 
+  [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
+  accept="image/jpeg, image/jpg,application/pdf"> -->
+
+  <ion-input style="margin-left: 4px;"  type="file" required id="myfile1"  name="myfile1"  formControlName="myfile1"  (change)="changeVcard($event)" [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"  accept="image/jpeg, image/jpg,application/pdf"></ion-input>
+
+  <mat-error *ngIf="delerform.get('myfile1').hasError('required') && delerform.get('myfile1').touched" >
+    Please upload Visiting Card
+  </mat-error>
+ 
+</div>
+<p><small>By Clicking  "Accept' , you agree  the Terms & Conditions of JustO which mentioned in Privacy Policy</small></p>
+<mat-checkbox
+class="example-margin"  formControlName="termsAndConditions" name="termsAndConditions" required [class.error1]="!delerform.controls.termsAndConditions.valid && delerform.controls.termsAndConditions.dirty" > I Accept
+</mat-checkbox>
+<mat-error *ngIf="delerform.get('termsAndConditions').hasError('required') && delerform.get('termsAndConditions').touched" >
+  This is required
+</mat-error>
+<!-- <ion-button type="submit" color="primary" size="small" class="btn" [disabled]="userform.invalid">SEND
+ -->
+       <!--  <mat-card-actions align="center">
+                <ion-button type="submit" color="primary" size="small" class="btn" [disabled]="userform.invalid">SEND
+          <button mat-raised-button color="secondary" >Sign Up</button>
+        </mat-card-actions> -->
+        <div class="button">
+          <ion-button type="submit" expand="full" class="bgcolor" [disabled]="!delerform.valid" >Sign Up</ion-button>         
+        </div> 
+      </form>
+    </div>
+
+    <!-- SIGN UP PAGE Vendor-->
+      <div class="sign-container"  *ngSwitchCase="2">
+    <form [formGroup]="vendorform" autocomplete="off" novalidate (ngSubmit)="createvendor(vendorform.value)" fxLayout="column wrap"
+fxLayoutAlign="center center" fxLayoutGap="10px">
+    <h4 class="title icon-green-color">SIGNUP NOW</h4>
+
+   
+
+    <!-- <mat-form-field style="width: 100%; color:black;">
+      <input matInput placeholder="Enter your Last Name" type="text" [(ngModel)]="user.cf_875"
+      formControlName="cf_875" name="cf_875" required [class.error1]="!vendorform.controls.cf_875.valid && vendorform.controls.cf_875.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+      <mat-error *ngIf="vendorform.get('cf_875').hasError('required') && vendorform.get('cf_875').touched" >
+        Please enter your Last Name
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('cf_875').hasError('minlength') && vendorform.get('cf_875').touched" >
+        Minimum 3 characters
+      </mat-error>
+    </mat-form-field> -->
+
+    <mat-form-field style="width: 100%; color:black;">
+      <input matInput placeholder="Enter your Business Name" type="text" [(ngModel)]="user.cf_877"
+      formControlName="cf_877" name="cf_877" required [class.error1]="!vendorform.controls.cf_877.valid && vendorform.controls.cf_877.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+      <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+      <mat-error *ngIf="vendorform.get('cf_877').hasError('required') && vendorform.get('cf_877').touched" >
+        Please enter your Business Name
+      </mat-error>
+    
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%; color:black;">
+      <mat-select placeholder="Select Business Type" [(ngModel)]="user.cf_879"
+      formControlName="cf_879" name="cf_879" required [class.error1]="!vendorform.controls.cf_879.valid && vendorform.controls.cf_879.dirty">
+        <mat-option>Select Business Type</mat-option>
+        <mat-option  value="Proprietorship">        
+          PROPRIETORSHIP     
+        </mat-option>
+        <mat-option  value="pvt ltd">        
+          PVT LTD   
+        </mat-option>
+        <mat-option  value="Partnership">        
+          PARTNERSHIP     
+        </mat-option>
+        <mat-option  value="LLP">        
+          LLP     
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="vendorform.get('cf_879').hasError('required') && vendorform.get('cf_879').touched" >
+        Please choose an Business Type</mat-error>
+     
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%; color:black;">
+      <input matInput placeholder="Enter your Name" type="text" [(ngModel)]="user.vendorname"
+      formControlName="vendorname" name="vendorname" required [class.error1]="!vendorform.controls.vendorname.valid && vendorform.controls.vendorname.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+      <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+      <mat-error *ngIf="vendorform.get('vendorname').hasError('required') && vendorform.get('vendorname').touched" >
+        Please enter your Vendor Name
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('vendorname').hasError('minlength') && vendorform.get('vendorname').touched">
+        Minimum 3 characters
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%; color:black;">
+      <input matInput placeholder="Enter your Mobile Number" maxlength="10" type="tel" [(ngModel)]="user.phone"
+      formControlName="phone" name="phone" required [class.error1]="!vendorform.controls.phone.valid && vendorform.controls.phone.dirty">
+      <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+      <mat-error *ngIf="vendorform.get('phone').hasError('required') && vendorform.get('phone').touched" >
+        Please enter your Registered Mobile Number
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('phone').hasError('minlength') && vendorform.get('phone').touched">
+        Minimum 10 characters
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('phone').hasError('maxlength') && vendorform.get('phone').touched">
+        Maximum 10 characters
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('phone').hasError('pattern') && vendorform.get('phone').touched">
+        Mobile Number is Invalid!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%; color:black;">
+      <input matInput placeholder="Enter the Email ID" type="email" [(ngModel)]="user.email" formControlName="email" name="email" required [class.error1]="!vendorform.controls.email.valid && vendorform.controls.email.dirty">
+      <mat-error *ngIf="vendorform.get('email').hasError('required') && vendorform.get('email').touched" autocapitalize="characters" >
+        Please enter your Email Address
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('email').hasError('email') && vendorform.get('email').touched" >
+        Not a valid email                 
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%; color:black;">
+      <input matInput placeholder="Enter the GSTIN Number" type="text" [(ngModel)]="user.cf_881"
+      formControlName="cf_881" name="cf_881" required [class.error1]="!vendorform.controls.cf_881.valid && vendorform.controls.cf_881.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+      <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+      <mat-error *ngIf="vendorform.get('cf_881').hasError('required') && vendorform.get('cf_881').touched" >
+        Please enter your GSTIN Number
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('cf_881').hasError('pattern') && vendorform.get('cf_881').touched" >
+
+        GSTN Number is Invalid!
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field style="width: 100%; color:black;">
+      <input matInput placeholder="Enter the Pan Card" type="text" [(ngModel)]="user.cf_883"
+      formControlName="cf_883" name="cf_883" required [class.error1]="!vendorform.controls.cf_883.valid && vendorform.controls.cf_883.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+      <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+      <mat-error *ngIf="vendorform.get('cf_883').hasError('required') && vendorform.get('cf_883').touched" >
+        Please enter Pan Card
+      </mat-error>
+     
+      <mat-error *ngIf="vendorform.get('cf_883').hasError('pattern') && vendorform.get('cf_883').touched" >
+        Pancard Number is not valid!
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field style="width: 100%; color:black;">
+      <input matInput placeholder="Enter your Username" type="text" [(ngModel)]="user.cf_897"
+      formControlName="cf_897" name="cf_897" required [class.error1]="!vendorform.controls.cf_897.valid && vendorform.controls.cf_897.dirty">
+      <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+      <mat-error *ngIf="vendorform.get('cf_897').hasError('required') && vendorform.get('cf_897').touched" >
+        Please enter your Username
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('cf_897').hasError('minlength') && vendorform.get('cf_897').touched" >
+        Minimum 3 characters
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('cf_897').hasError('pattern') && vendorform.get('cf_897').touched">
+        Username cannot contain whitespace
+       </mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%; color:black;">
+      <input matInput placeholder="Enter your Password" type="password" [(ngModel)]="user.cf_899"
+      formControlName="cf_899" name="cf_899" required [class.error1]="!vendorform.controls.cf_899.valid && vendorform.controls.cf_899.dirty">
+      <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+      <mat-error *ngIf="vendorform.get('cf_899').hasError('required') && vendorform.get('cf_899').touched" >
+        Please enter your Password
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('cf_899').hasError('minlength') && vendorform.get('cf_899').touched" >
+        Minimum 4 characters
+      </mat-error>
+      <mat-error *ngIf="vendorform.get('cf_899').hasError('pattern') && vendorform.get('cf_899').touched">
+        Password cannot contain whitespace
+       </mat-error>
+    </mat-form-field>
+
+   
+
+   
+
+    
+
+    <b>Address</b>
+            <mat-form-field style="width: 100%; color:black;">
+              <input matInput placeholder="Enter the Shop No" type="text" [(ngModel)]="user.shopno"  formControlName="shopno" name="shopno" required [class.error1]="!vendorform.controls.shopno.valid && vendorform.controls.shopno.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+              <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+              
+             
+            </mat-form-field>
+    
+
+            <mat-form-field style="width: 100%; color:black;">
+              <input matInput placeholder="Enter the Road/Cross" type="text" [(ngModel)]="user.street" formControlName="street" name="street" required [class.error1]="!vendorform.controls.street.valid && vendorform.controls.street.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+              <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+              <mat-error *ngIf="vendorform.get('street').hasError('required') && vendorform.get('street').touched" >
+                Please enter your Road/Cross
+              </mat-error>
+              <mat-error *ngIf="vendorform.get('street').hasError('minlength') && vendorform.get('street').touched" >
+                minimum 4 characters
+              </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field style="width: 100%; color:black;">
+              <input matInput placeholder="Enter the Landmark" type="text" [(ngModel)]="user.landmark"           formControlName="landmark" name="landmark" required [class.error1]="!vendorform.controls.landmark.valid && vendorform.controls.landmark.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+              <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+              <mat-error *ngIf="vendorform.get('landmark').hasError('required') && vendorform.get('landmark').touched" >
+                Please enter your Landmark
+              </mat-error>
+            
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%; color:black;">
+              <input matInput placeholder="Enter the City" type="text" [(ngModel)]="user.city" formControlName="city" name="city" required [class.error1]="!vendorform.controls.city.valid && vendorform.controls.city.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+              <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+              <mat-error *ngIf="vendorform.get('city').hasError('required') && vendorform.get('city').touched" >
+                Please enter your City
+              </mat-error>
+            
+            </mat-form-field>
+    
+            <mat-form-field style="width: 100%; color:black;">
+              <input matInput placeholder="Enter the Pincode" type="text" [(ngModel)]="user.postalcode" formControlName="postalcode" name="postalcode" required [class.error1]="!vendorform.controls.postalcode.valid && vendorform.controls.postalcode.dirty" autocapitalize="characters" style="text-transform: uppercase;"  (input)="onPostalcodeChange()">
+              <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+              <mat-error *ngIf="vendorform.get('postalcode').hasError('required') && vendorform.get('postalcode').touched" >
+                Please enter your Pincode
+              </mat-error>
+              <mat-error *ngIf="vendorform.get('postalcode').hasError('pattern') && vendorform.get('postalcode').touched">
+                Pincode is Invalid
+              </mat-error>
+              <mat-error *ngIf="vendorform.get('postalcode').hasError('minlength') && vendorform.get('postalcode').touched">
+                Pincode can't Be less Than 6 digit
+              </mat-error>
+              <mat-error *ngIf="vendorform.get('postalcode').hasError('maxlength') && vendorform.get('postalcode').touched">
+                Pincode can't Be More Than 6 digit
+              </mat-error>
+    
+            
+              
+            </mat-form-field>
+    
+            
+    
+            <mat-form-field style="width: 100%; color:black;">
+              <input matInput placeholder="Enter the Taluk" type="text" [(ngModel)]="user.taluk" formControlName="taluk" name="taluk" required [class.error1]="!vendorform.controls.taluk.valid && vendorform.controls.taluk.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+              <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+              <mat-error *ngIf="vendorform.get('taluk').hasError('required') && vendorform.get('taluk').touched" >
+                Please enter your Taluk
+              </mat-error>
+            
+            </mat-form-field>
+    
+    
+            <mat-form-field style="width: 100%; color:black;">
+              <input matInput placeholder="Enter the District" type="text" [(ngModel)]="user.district" formControlName="district" name="district" required [class.error1]="!vendorform.controls.district.valid && vendorform.controls.district.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+              <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+              <mat-error *ngIf="vendorform.get('district').hasError('required') && vendorform.get('district').touched" >
+                Please enter your District
+              </mat-error>
+            
+            </mat-form-field>
+    
+            <mat-form-field style="width: 100%; color:black;">
+              <input matInput placeholder="Enter the State" type="text" [(ngModel)]="user.state" formControlName="state" name="state" required [class.error1]="!vendorform.controls.state.valid && vendorform.controls.state.dirty" autocapitalize="characters" style="text-transform: uppercase;">
+              <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+              <mat-error *ngIf="vendorform.get('state').hasError('required') && vendorform.get('state').touched" >
+                Please enter your State
+              </mat-error>
+            
+            </mat-form-field>
+
+    
+
+     
+
+    
+
+    <!-- <mat-form-field style="width: 100%; color:black;">
+      <input matInput placeholder="Enter your GSTN certificate" type="file" [(ngModel)]="user.email1"
+        [formControl]="passFormControl" required>
+  
+      <mat-error *ngIf="passFormControl.hasError('required')">
+        please enter your GSTN certificate
+      </mat-error>
+      <mat-error *ngIf="passFormControl.hasError('minlength')">
+        minimum 4 characters
+      </mat-error>
+    </mat-form-field> -->
+
+
+
+   
+
+    <div class="file">
+    <label style="color: black;">GSTIN Certificate (Upload PDF or JPEG ; Max 3MB)</label> 
+    <ion-input style="margin-left: 4px;"  type="file" id="myfile2" 
+    formControlName="myfile2" name="myfile2" required [class.error1]="!vendorform.controls.myfile2.valid && vendorform.controls.myfile2.dirty"  accept="image/jpeg, image/jpg,application/pdf"  (change)="changeGst1($event)"></ion-input>
+
+    <mat-error *ngIf="vendorform.get('myfile2').hasError('required') && vendorform.get('myfile2').touched" >
+      Please upload GSTIN Certificate
+    </mat-error>
+   
+       </div>
+       <br>  <br>
+       <div class="file">
+    <label style="color: black;">Visiting Card (Upload PDF or JPEG ; Max 3MB)</label>  
+     <ion-input style="margin-left: 4px;"  type="file" id="myfile3" 
+      name="myfile3"  accept="image/jpeg, image/jpg,application/pdf" formControlName="myfile3" (change)="changeVcard1($event)" [class.error1]="!vendorform.controls.myfile3.valid && vendorform.controls.myfile3.dirty"></ion-input>
+      <mat-error *ngIf="vendorform.get('myfile3').hasError('required') && vendorform.get('myfile3').touched" >
+        Please upload Visiting Card 
+      </mat-error>
+      
+      </div>
+<!-- 
+    <mat-form-field style="width: 100%; color:black;  margin-bottom: 10%;">
+      <input matInput placeholder="Enter visiting card" type="file" [(ngModel)]="user.cf_873"
+        [formControl]="passFormControl" required>
+      
+      <mat-error *ngIf="passFormControl.hasError('required')">
+        please enter visiting card
+      </mat-error>
+      <mat-error *ngIf="passFormControl.hasError('minlength')">
+        minimum 4 characters
+      </mat-error>
+    </mat-form-field> -->
+
+    <p><small>By Clicking  "Accept' , you agree  the Terms & Conditions of JustO which mentioned in Privacy Policy</small></p>
+<mat-checkbox
+class="example-margin"  formControlName="termsAndConditions" name="termsAndConditions" required [class.error1]="!vendorform.controls.termsAndConditions.valid && vendorform.controls.termsAndConditions.dirty" > I Accept
+</mat-checkbox>
+<mat-error *ngIf="vendorform.get('termsAndConditions').hasError('required') && vendorform.get('termsAndConditions').touched" >
+  This is required
+</mat-error>
+
+    <div class="button" >
+      <!-- <ion-button expand="full" style="width: 100%;  background: rgb(31, 179, 238);; color:black" (click)="submitvendor()">Sign Up</ion-button> -->
+      <ion-button type="submit" expand="full" color="secondary" [disabled]="!vendorform.valid" >Sign Up</ion-button>
+
+   
+<!--   <ion-button expand="full" color="secondary" (click)="submitvendor()">Sign Up</ion-button>
+ -->   
+ </div>
+  </form>
+      </div>
+
+    </div>
+</ion-content>
+<!-- 
+<div class="content">
+  <br> ---OR JOIN WITH---
+</div>
+
+<div class="flex-container">
+  <div> <img src="https://img.icons8.com/color/30/000000/facebook-circled.png"></div>
+  <div> <img src="https://img.icons8.com/color/30/000000/google-plus.png"></div>
+
+</div> -->

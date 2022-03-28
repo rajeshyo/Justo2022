@@ -1,0 +1,213 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-family: 'Open Sans', sans-serif; font-size: 17px"
+      >MY VISIT</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+<ion-content class="visit">
+  <svg
+    class="back-blob"
+    viewBox="0 0 200 200"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="#8295A3"
+      d="M68.6,-33.5C81.6,-17.2,79.6,13.8,65.7,37.6C51.8,61.3,25.9,77.8,2.1,76.6C-21.7,75.4,-43.5,56.5,-54.2,34.6C-65,12.7,-64.8,-12.3,-53.9,-27.4C-43,-42.4,-21.5,-47.6,3.2,-49.4C27.9,-51.2,55.7,-49.7,68.6,-33.5Z"
+      transform="translate(100 100)"
+    />
+  </svg>
+
+  <div class="ion-padding">
+    <form
+      class="ion-padding"
+      novalidate
+      (ngSubmit)="saveData()"
+      [formGroup]="visitform"
+    >
+      <!-- <ion-label>Dealer Name</ion-label> -->
+      <div class="wrap-input">
+        <input
+          class="input upper"
+          type="text"
+          placeholder="Dealer Name *"
+          [(ngModel)]="visitdata.dealername"
+          formControlName="dealername"
+          name="dealername"
+          [class.error1]="!visitform.controls.dealername.valid && visitform.controls.dealername.dirty"
+          
+        />
+
+      </div>
+     
+        <span
+        class="error ion-padding-start text-danger"
+        no-lines
+        *ngIf="( visitform.get('dealername').hasError('required') || visitform.get('dealername').hasError('maxlength') ) && visitform.get('dealername').touched"
+      >
+        <p class="errormesg"
+          *ngIf="visitform.get('dealername').hasError('required') && visitform.get('dealername').touched"
+        >
+          Dealer Name is required!
+        </p>
+        <p class="errormesg"
+          *ngIf="visitform.get('dealername').hasError('maxlength') && visitform.get('dealername').touched"
+        >
+          Dealer Name can't Be More Than 200 Character
+      </p>
+      </span>
+     
+      <div class="wrap-input">
+        <input
+          class="input"
+          type="tel"
+          placeholder="Phone *"
+          minlength="10"
+          maxlength="10"
+          [(ngModel)]="visitdata.phone"
+          formControlName="phone"
+          name="phone"
+          [class.error1]="!visitform.controls.phone.valid && visitform.controls.phone.dirty"
+        />
+
+       
+      </div>
+
+  <span
+  class="error ion-padding-start text-danger"
+  no-lines
+  *ngIf="( visitform.get('phone').hasError('required')  || visitform.get('phone').hasError('minlength')  || visitform.get('phone').hasError('maxlength') || visitform.get('phone').hasError('pattern') ) && visitform.get('phone').touched"
+>
+  <p class="errormesg"
+    *ngIf="visitform.get('phone').hasError('required') && visitform.get('phone').touched"
+  >
+    Phone number is required!
+  </p>
+  <p class="errormesg"
+    *ngIf="visitform.get('phone').hasError('maxlength') && visitform.get('phone').touched"
+  >
+    Phone number can't Be More than 10 Character
+  </p>
+
+  <p class="errormesg"
+    *ngIf="visitform.get('phone').hasError('minlength') && visitform.get('phone').touched"
+  >
+    Minimum 10 characters
+  </p>
+
+  <p class="errormesg"
+    *ngIf="visitform.get('phone').hasError('pattern') && visitform.get('phone').touched"
+  >
+    Phone Number is Invalid!
+  </p>
+</span>
+      <div class="wrap-input">
+        <ion-select
+          cancelText="Cancel"
+          okText="OK"
+          placeholder="Please Select *"
+          [(ngModel)]="visitdata.purpose"
+          formControlName="purpose"
+          name="purpose"
+        >
+          <ion-select-option value="ORDER">ORDER</ion-select-option>
+          <ion-select-option value="REGISTRATION"
+            >REGISTRATION</ion-select-option
+          >
+          <ion-select-option value="PAYMENT">PAYMENT</ion-select-option>
+          <ion-select-option value="SALES">SALES</ion-select-option>
+          <ion-select-option value="OTHERS">OTHERS</ion-select-option>
+        </ion-select>
+
+       
+      </div>
+      <span
+      class="error ion-padding-start text-danger"
+      no-lines
+      *ngIf="( visitform.get('purpose').hasError('required')  ) && visitform.get('purpose').touched">
+      <p class="errormesg"
+        *ngIf="visitform.get('purpose').hasError('required') && visitform.get('purpose').touched">
+        Purpose is required!
+      </p >
+    </span>
+      <div class="wrap-input" *ngIf="visitdata.purpose == 'OTHERS'">
+      <textarea class="input" type="text" placeholder="Others"  maxlength="30"
+      [(ngModel)]="visitdata.other_exaplanation"
+          formControlName="other_exaplanation" name="other_exaplanation" cols="5"
+          [class.error1]="!visitform.controls.other_exaplanation.valid && visitform.controls.other_exaplanation.dirty"></textarea>
+   
+          <ul class="error ion-padding-start text-danger" no-lines
+          *ngIf="( visitform.get('other_exaplanation').hasError('required')  ) && visitform.get('purpose').touched">
+
+          <li *ngIf="visitform.get('other_exaplanation').hasError('required') && visitform.get('other_exaplanation').touched">
+              Purpose is required!
+          </li>
+      </ul>
+        </div>
+
+      <ion-button class="btn" shape="round" size="small" (click)="getCurrentCoordinates()"
+        ><ion-icon name="location-outline" class="ion-padding-end"></ion-icon
+        >GET LOCATION</ion-button
+      >
+
+      <br /><br />
+
+      <div class="wrap-input">
+        <input class="input" type="text" placeholder="Latitude *" [(ngModel)]="latitude"
+        formControlName="latitude" name="latitude"
+        [class.error1]="!visitform.controls.latitude.valid && visitform.controls.latitude.dirty" readonly/>
+        <ul class="error ion-padding-start text-danger" no-lines
+        *ngIf=" visitform.get('latitude').hasError('required')  && visitform.get('latitude').touched">
+
+        <li *ngIf="visitform.get('latitude').hasError('required') && visitform.get('latitude').touched">
+          Latitude is required!
+        </li>
+       
+
+    </ul> 
+      </div>
+
+      <div class="wrap-input">
+        <input class="input" type="text" placeholder="Longitude *" [(ngModel)]="longitude"
+        formControlName="longitude" name="longitude"
+        [class.error1]="!visitform.controls.longitude.valid && visitform.controls.longitude.dirty" readonly/>
+      
+        <ul class="error ion-padding-start text-danger" no-lines
+        *ngIf=" visitform.get('longitude').hasError('required') && visitform.get('longitude').touched">
+  
+        <li *ngIf="visitform.get('longitude').hasError('required') && visitform.get('longitude').touched">
+          Longitude is required!
+        </li>
+        
+  
+    </ul>  
+      </div>
+
+      <div class="wrap-input">
+        <textarea
+          class="input"
+          type="address"
+          placeholder="Address *"
+          style="padding-top: 4%"
+          [(ngModel)]="address"
+          formControlName="address" name="address"
+          [class.error1]="!visitform.controls.address.valid && visitform.controls.address.dirty" readonly
+        ></textarea>
+        <ul class="error ion-padding-start text-danger" no-lines
+        *ngIf=" visitform.get('address').hasError('required') && visitform.get('address').touched">
+      
+        <li *ngIf="visitform.get('address').hasError('required') && visitform.get('address').touched">
+          Address is required!
+        </li>
+        
+      
+      </ul> 
+      </div>
+
+      <ion-button class="btn" expand="block" type="submit" [disabled]="visitform.invalid">Save Details</ion-button>
+    </form>
+  </div>
+</ion-content>

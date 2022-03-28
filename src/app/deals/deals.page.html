@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+
+   
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <div>
+            <ion-buttons slot="start">
+              <ion-back-button defaultHref="/home"></ion-back-button>
+            </ion-buttons>
+            <!-- <ion-buttons slot="start">
+              <ion-menu-button color="Medium"></ion-menu-button>
+            </ion-buttons> -->
+          </div>
+        </ion-col>
+
+        <ion-col size="4">
+          <div style="font-size: 16px;"><b>{{title}}</b> </div>
+        </ion-col>
+
+        <ion-col size="1.4" >
+          <div > <mat-icon (click)="search()" class="icon-green-color header-icon-size">search</mat-icon></div>
+        </ion-col>
+
+        <ion-col size="1.8" >
+          <div routerLink="/wishlist" routerDirection="root">
+            <!-- <mat-icon (click)="wishlistbtn()" style="color: #0ed0f1; font-size: 32px">favorite</mat-icon> -->
+            <ion-icon name="heart-outline" (click)="wishlistbtn()" class="icon-green-color header-icon-size"></ion-icon>
+           
+            <p class="bagde-icon" > {{cartService.wishlistItemCount}}</p>
+
+          </div>
+        </ion-col>
+        <ion-col size="1.8" >
+          <div routerLink="/cart" routerDirection="root">
+             <!-- <mat-icon style="color: #0ed0f1; font-size: 32px">shopping_cart</mat-icon> -->
+             <ion-icon name="cart-outline" class="icon-green-color header-icon-size"></ion-icon>
+            
+             <p class="bagde-icon" >{{cartService.cartItemCount}}</p>
+          </div>
+       </ion-col>
+     
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="ion-text-center empty" *ngIf="topdata.length ===0 && loaddata ==1">
+    <ion-card-header>
+       <!-- <ion-icon class="cimage" name="cart-outline"></ion-icon> -->
+      <ion-card-title>No Product Is There!</ion-card-title>
+      <!-- <ion-card-subtitle>Add items to it now.</ion-card-subtitle> -->
+    </ion-card-header>
+ 
+    <ion-card-content>
+      <ion-button color="secondary" expand="block" size="small" routerLink="/home">
+       Shop now
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+       <ion-col class="maincard" size="6" *ngFor="let productlist of topdata;let i = index"
+          style="text-align: -webkit-center;margin: 0%; "  >
+        <!-- <div class="budge_offer" ><span > {{productlist.discount}}%</span> </div> -->
+          <div class="p-image" >
+             <img (click)="productdetails(productlist.id)" class="img-responsive productcatimg" onerror="this.src='/assets/img/placeholder.png';" [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="productlist.imagePath">
+          </div>
+          <div>
+            <div (click)="productdetails(productlist.id)" class="tx" style="color: black; font-size: 14px; margin-bottom: 7px;"><b>{{productlist.cf_966}}</b></div>
+            <div (click)="productdetails(productlist.id)" class="tx" style="color: black; font-size: 14px; margin-bottom: 5px; font-family: Roboto,Arial,sans-serif;;"><b>{{productlist.label}}</b></div>
+          <!--   <div (click)="productdetails(productlist.id)" class="tx tx2" style="color: #fff; font-size: 12px;"> <span style="font-weight: 600;">MRP:</span> <b> &#x20b9; {{productlist.unit_price}}</b></div> -->
+            <div (click)="productdetails(productlist.id)" class="tx tx1" style="  font-size: 12px;"> <span style="font-weight: 600;">JustO DEAL:  &#x20b9; {{productlist.justodeal}}</span></div>
+
+          </div>
+     
+          <div class="main_cart_btn">
+            <ion-button size="default" color="light"  (click)="addtocart(productlist.id)"  >Add To Cart</ion-button>
+
+          </div>
+       </ion-col>
+    </ion-row>
+ </ion-grid>
+
+</ion-content>

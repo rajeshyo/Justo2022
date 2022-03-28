@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar color="light" >
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-family: 'Open Sans', sans-serif; font-size: 17px;">EDIT PROFILE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="profile">
+  <form novalidate (ngSubmit)="saveData()" [formGroup]="userform" class="formStyle">
+  <!-- <ion-card> -->
+    <ion-grid class="main-header">
+      <h1 class="h1">{{userInfo.first_name}} {{userInfo.last_name}}</h1>
+      <div align="center">
+        <ion-avatar style="background-color: white; border: 1px solid white">
+          <!-- <img src="assets/Avatar5.png" /> -->
+          <img  onerror="this.src='assets/Avatar5.png';"  [defaultImage]="'assets/Avatar5.png'" [lazyLoad]="userInfo.imagename">
+        </ion-avatar>
+      </div>
+    </ion-grid>
+
+    <br /><br /><br /><br />
+
+
+    <ion-button shape="round" class="btn">
+      <ion-icon name="camera-outline"></ion-icon>&nbsp; EDIT
+      <ion-input class="profile-file" type="file" (change)="changeListener($event)" accept="image/jpeg, image/jpg, image/png"></ion-input>
+    </ion-button>
+
+    <br />
+
+    <ion-item-group>
+      
+        <div>
+          <ion-item>
+            <ion-input type="text" placeholder="First Name"  [(ngModel)]="userInfo.first_name"
+              formControlName="firstname" name="firstname"
+              [class.error1]="!userform.controls.firstname.valid && userform.controls.firstname.dirty"></ion-input>
+  
+              <ul class="error ion-padding-start text-danger" no-lines
+                  *ngIf="( userform.get('firstname').hasError('required') || userform.get('firstname').hasError('maxlength') ) && userform.get('firstname').touched">
+  
+                  <li *ngIf="userform.get('firstname').hasError('minlength') && userform.get('firstname').touched">
+                    First Name is required!
+                  </li>
+                  <li *ngIf="userform.get('firstname').hasError('maxlength') && userform.get('firstname').touched">
+                    First Name can't Be More Than 150 Character
+                  </li>
+  
+              </ul>  
+
+            <ion-icon
+              name="person-outline"
+              slot="start"
+              class="icon ion-padding-start"
+            ></ion-icon>
+          </ion-item>
+        </div>
+
+        <div>
+          <ion-item>
+            <ion-input type="text" placeholder="Last Name" class="form-control even" [(ngModel)]="userInfo.last_name"
+            formControlName="lastname" name="lastname"
+            [class.error1]="!userform.controls.lastname.valid && userform.controls.lastname.dirty"></ion-input>
+
+            <ul class="error ion-padding-start text-danger" no-lines
+                *ngIf="( userform.get('lastname').hasError('required') || userform.get('lastname').hasError('maxlength') ) && userform.get('lastname').touched">
+
+                <li *ngIf="userform.get('lastname').hasError('minlength') && userform.get('lastname').touched">
+                    Last Name is required!
+                </li>
+                <li *ngIf="userform.get('lastname').hasError('maxlength') && userform.get('lastname').touched">
+                  Last Name can't Be More Than 150 Character
+                </li>
+
+            </ul>  
+            <ion-icon
+              name="person-outline"
+              slot="start"
+              class="icon ion-padding-start"
+            ></ion-icon>
+          </ion-item>
+        </div>
+
+        <div>
+          <ion-item>
+            <ion-textarea type="text" placeholder="Address" class="form-control even" [(ngModel)]="userInfo.address_street"
+            formControlName="address" name="address"
+            [class.error1]="!userform.controls.address.valid && userform.controls.address.dirty"></ion-textarea>
+            <ul class="error ion-padding-start text-danger" no-lines
+                *ngIf="( userform.get('address').hasError('required')  ) && userform.get('address').touched">
+
+                <li *ngIf="userform.get('address').hasError('minlength') && userform.get('address').touched">
+                    Address is required!
+                </li>
+            </ul>
+            <ion-icon
+              name="home-outline"
+              slot="start"
+              class="icon ion-padding-start"
+            ></ion-icon>
+          </ion-item>
+        </div>
+      
+    </ion-item-group>
+  <!-- </ion-card> -->
+
+  <br />
+
+  <ion-button
+  [disabled]="userform.invalid"
+    shape="round"
+    class="btn1"
+    type="submit"
+    >SAVE DETAILS</ion-button
+  >
+</form>
+</ion-content>

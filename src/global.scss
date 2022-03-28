@@ -1,0 +1,84 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.icon-green-color {
+    color: #259b8d !important;
+  }
+
+  .header-icon-size{
+    font-size:20px;
+  }
+  .header-icon-size-15{
+    font-size:15px;
+  }
+
+
+  .row-border{
+    border-bottom: 1px solid #f5f0f0;
+  }
+   .col-item::after{
+    content: ":";
+    right: 0;
+    position: absolute;
+   }
+
+   .bagde-icon {
+    color: white;
+    position: absolute;
+    top: 4px;
+    background: red;
+    padding: 0px 5px 5px 4px;
+    border-radius: 50px;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    margin-top: -9px !important;
+    font-size: 8px;
+    right: 10px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #0a5d00 !important;
+}
+.swiper-pagination {
+  bottom: -4px !important;
+  bottom: calc(env(safe-area-inset-bottom) - 4px) !important;
+  }
+
+  .swiper-pagination-bullet {
+    background: #fff;
+  }
+
+  .bgcolor{
+   
+    --background: #259b8d;
+  }
+  .bgcolor1{
+    background-color: #259b8d;
+   
+  }

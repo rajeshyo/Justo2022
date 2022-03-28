@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "70617591729",
+    "firebase_url": "https://test-whtiku.firebaseio.com",
+    "project_id": "test-whtiku",
+    "storage_bucket": "test-whtiku.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70617591729:android:d5a3a076d7b797224b1790",
+        "android_client_info": {
+          "package_name": "com.app.justo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70617591729-rakkmk3voe7ivj2b6tgf0cbsf7ed4gu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBijmS6ZRvXmFQpPzPr91h_QeqaqRp4vds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70617591729-c8opa8rtjp33kppuhn6vlr0navdoir9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

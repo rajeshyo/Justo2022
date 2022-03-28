@@ -1,0 +1,72 @@
+ion-content {
+  --background: rgba(237, 242, 245, 0.8);
+
+  .back-blob {
+    z-index: -1;
+    width: 600px;
+    position: fixed;
+    left: -50%;
+    top: 0;
+  }
+
+  // form {
+  //   margin-top: 100px;
+  // }
+
+  .wrap-input {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    margin-bottom: 26px;
+    box-shadow: 0 10px 30px 0px rgba(57, 71, 82, 0.12);
+  }
+
+  .input {
+    display: block;
+    width: 100%;
+    background: transparent;
+    // font-family: Josefin Sans;
+    font-size: 16px;
+    line-height: 1.2;
+    border: none;
+    outline: none;
+    height: 46px;
+    padding: 0 20px 0 23px;
+  }
+.upper{
+  text-transform: uppercase;
+}
+.errormesg{
+  color: red;
+  margin-top: -23px;
+}
+  .container-form-btn {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 160px;
+    height: 42px;
+    background-color: #394752;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding-top: 5px;
+    transition: all 0.4s;
+    box-shadow: 0 10px 30px 0px rgba(57, 71, 82, 0.5);
+  }
+
+  .form-btn:hover {
+    background-color: #28333b;
+    box-shadow: 0 10px 30px 0px rgba(57, 71, 82, 0.8);
+  }
+}
+
+.btn {
+  --background: #259b8d !important;
+}

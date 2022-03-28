@@ -1,0 +1,79 @@
+      <!-- Header -->
+      <ion-header >
+         <ion-toolbar color="light" >
+             <ion-buttons slot="start" >
+                 <ion-back-button defaultHref="/home"></ion-back-button>
+               </ion-buttons>
+           <ion-title style="font-family: 'Open Sans', sans-serif; font-size: 17px;">MY PROFILE</ion-title>
+         </ion-toolbar>
+       </ion-header>
+      
+       <ion-content >      
+<ion-grid class="main-header bgcolor1">
+   <h1 class="h1">{{userdata.first_name}} {{userdata.last_name}}</h1>
+   <div align="center">
+     <ion-avatar style="background-color: white; border: 1px solid white">
+       <!-- <img src="assets/Avatar5.png" /> -->
+       <img  onerror="this.src='assets/Avatar5.png';" [defaultImage]="'assets/Avatar5.png'" [lazyLoad]="userdata.imagename">
+     </ion-avatar>
+   </div>
+ </ion-grid>
+
+ <br /><br /><br /><br />
+
+ <ion-item-group>
+   <form>
+     <div>
+       <ion-item>
+         <span *ngIf= "userdata.user_name != ''">
+            <ion-text>{{userdata.user_name}}</ion-text>
+         </span>
+         <span class="text-center"  *ngIf= "userdata.user_name == ''"> - </span>
+         <ion-icon
+           name="person-outline"
+           slot="start"
+           class="icon ion-padding-start"
+         ></ion-icon>
+       </ion-item>
+     </div>
+
+     <div>
+       <ion-item>
+         <span *ngIf= "userdata.email1 != ''">
+            <ion-text>{{userdata.email1}}</ion-text>
+         </span>
+         <span class="text-center"  *ngIf= "userdata.email1 == ''"> - </span> 
+         <ion-icon
+           name="mail-outline"
+           slot="start"
+           class="icon ion-padding-start"
+         ></ion-icon>
+       </ion-item>
+     </div>
+
+     <div>
+       <ion-item>
+         <span *ngIf= "userdata.phone_mobile != ''"> 
+         <ion-text>{{userdata.phone_mobile}}</ion-text>
+         </span>
+         <span class="text-center" *ngIf= "userdata.phone_mobile == ''">   - </span> 
+         <ion-icon
+           name="call-outline"
+           slot="start"
+           class="icon ion-padding-start"
+         ></ion-icon>
+       </ion-item>
+     </div>
+   </form>
+
+   <br />
+
+   <ion-button
+     shape="round"
+     class="btn bgcolor"
+     routerLink="/profile"
+     routerDirection="forward"
+     >Edit Profile</ion-button
+   >
+ </ion-item-group>
+ </ion-content>

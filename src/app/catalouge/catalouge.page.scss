@@ -1,0 +1,185 @@
+
+.main-logo{
+    display: flex;
+     width: 100%;
+     border-bottom: 1px solid #f1f1f1;
+     
+   }
+  
+  // .menu{
+  //   width: 15%;
+  //   margin-top: -1.25%;
+  //   }
+    .Home{
+      margin-top: 10px;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: black;
+      width: 50%;;
+    }
+    .basket{
+      width: 11%;
+      margin-top: 10px;
+      color:'medium';
+    }
+    .search{
+     width: 12%;
+     margin-top: 10px;
+     color:'medium';
+    }
+    .wish{
+      width: 12%;
+      margin-top: 10px;
+      color:'medium';
+     }
+  
+  
+  
+   .wn{
+    // background-color: #f1f1f1;
+    background-color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    // flex-direction: row;
+    //flex-direction: column;
+    letter-spacing: .5px;
+     border-radius: 3px;
+     padding: 1%;
+     
+    
+   }
+
+   .tx{
+    letter-spacing: .3px;
+    font-family: 'Open Sans', sans-serif;
+     font-size: 8px;
+     margin: 0px;
+     line-height: 1.25;
+   }
+  
+  
+ 
+  .category-bag{
+    width: 45%;
+    margin: auto;
+    position: relative;
+
+  }
+  .kt {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    background-color:rgb(153, 118, 121);
+    color: #fff;
+    padding: 5px;
+    bottom: 0px;
+    font-size: 14px;
+    /* font-weight: inherit; */
+  }
+  
+  
+  
+  .icon{
+position: relative;
+  
+  }
+  .thumb-img{
+  height: 100px;
+    width: 150%;
+  }
+
+  ion-grid{
+    width: 100%;
+    border-bottom: 1px solid rgb(173, 173, 173);
+  }
+
+  ion-col{
+    margin: auto;
+    color:'medium';
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+  }
+  
+  
+.productcat{
+  width: 20%;
+}
+.productcatimg{
+  position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    // padding: 10px;
+    max-height: 100%;
+    border-radius: 10px;
+    height: 147px;
+}
+.catalogue_sec{
+  height: 150px;
+   position: relative;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    box-shadow: -1px 1px 2px 0px #fff9f9;
+    
+}
+.menuu{
+  position: fixed;
+  bottom: 0px;
+  z-index: 2;
+  background-color: #fff;
+  width: 100%;
+}
+
+
+
+
+.bagde-icon1{
+  color: white;
+  position: absolute;
+  top: 4px;
+  background: red;
+  padding: 3px 3px 0 4px;
+  border-radius: 50px;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  font-size: 8px;
+}
+.cardmain{
+  box-shadow: -1px 1px 8px 2px rgb(220 215 215);
+  border-top: 1px solid #eaeaea;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.cardtitle{
+  color: rgb(21 20 20);text-transform: uppercase;
+                  box-shadow: -1px 1px 0 5px #fff, 1px 1px 0 5px #fff, 0 7px 0 0 #e3e3e3;
+
+}
+.iconcolor{
+ 
+  font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.swiper-pagination swiper-pagination-bullets{
+  margin-bottom: -20px;
+}
+
+.contentdata{
+  font-weight: 600;
+}
+.menutext{
+  font-size: 8px;
+  margin-bottom: 5px;
+}
+
+
+.catalogue_grid{
+    text-align: center;
+    border-bottom: none !important;
+}

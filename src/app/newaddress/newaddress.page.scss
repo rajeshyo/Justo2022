@@ -1,0 +1,28 @@
+ion-content{
+    --background: linear-gradient(100deg, var(--ion-color-light), var(--ion-color-primary-contrast));  
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+  
+    width: 100%;
+  }
+  
+  .example-container > * {
+    width: 100%;
+    margin: auto;
+    height: 100%;
+  
+  }
+
+  mat-card{
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 12px; 
+    border-radius: 0%;
+}
+mat-form-field{
+  width: 100%;
+}
+
+
+  

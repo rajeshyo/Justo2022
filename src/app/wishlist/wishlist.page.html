@@ -1,0 +1,101 @@
+<ion-header >
+  <ion-toolbar  style="font-family: 'Open Sans', sans-serif; ">
+    
+    <ion-grid>
+      <ion-row>
+         <ion-col size="2">
+            <div>
+              <ion-buttons   slot="start" >
+                <ion-back-button defaultHref="/cart"></ion-back-button>
+              </ion-buttons>
+            </div>
+         </ion-col>
+
+         <ion-col size="8">
+            <div style="font-size: 18px;"><b> WISHLIST</b> </div>
+         </ion-col>
+
+         <ion-col size="1.8" >
+          <div routerLink="/cart" routerDirection="root">
+             <!-- <mat-icon style="color: #0ed0f1; font-size: 32px">shopping_cart</mat-icon> -->
+             <ion-icon name="cart-outline" class="icon-green-color header-icon-size"></ion-icon>
+            
+             <p class="bagde-icon">{{cartService.cartItemCount}}</p>
+          </div>
+       </ion-col>
+
+      
+
+      </ion-row>
+   </ion-grid> 
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content>
+
+  <ion-card class="ion-text-center empty" *ngIf="deals.length ===0 && loaddata ==1" >
+    <ion-card-header>
+      <ion-icon  class="cimage icon-green-color" name="heart-outline"></ion-icon>
+      <ion-card-title>Your wishlist is empty!</ion-card-title>
+      <ion-card-subtitle>Save items that you like in your wishlist.</ion-card-subtitle>
+    </ion-card-header>
+ 
+    <ion-card-content>
+      <ion-button class="bgcolor" expand="block" size="small" routerLink="/home">
+       Shop now
+      </ion-button>
+    </ion-card-content>
+ 
+ 
+  </ion-card>
+
+
+  <ion-grid *ngIf="deals.length > 0 && loaddata ==1">
+    <ion-row>
+       <ion-col class="maincard" size="6" *ngFor="let productlist of deals;let i = index"
+          style="text-align: -webkit-center;margin: 0%; "  >
+        <!-- <div class="budge_offer" ><span > {{productlist.discount}}%</span> </div> -->
+          <div class="p-image" >
+             <img (click)="productdetails(productlist.id)" class="img-responsive productcatimg" onerror="this.src='/assets/img/placeholder.png';" [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="productlist.imagePath">
+          </div>
+          <div>
+            <div (click)="productdetails(productlist.id)" class="tx" style="color: black; font-size: 14px; margin-bottom: 7px;"><b>{{productlist.cf_966}}</b></div>
+            <div (click)="productdetails(productlist.id)" class="tx" style="color: black; font-size: 14px; margin-bottom: 5px; font-family: Roboto,Arial,sans-serif;;"><b>{{productlist.label}}</b></div>
+            <div (click)="productdetails(productlist.id)" class="tx tx2" > <span style="font-weight: 600;">MRP:</span> <b> &#x20b9; {{productlist.unit_price}}</b></div>
+            <div (click)="productdetails(productlist.id)" class="tx tx1" > <span style="font-weight: 600;">JustO DEAL:  &#x20b9; {{productlist.justodeal}}</span></div>
+
+          </div>
+     
+          <div class="main_cart_btn">
+            <ion-button size="default" class="bgcolor" expand="full"  style="margin-bottom: 15px;" (click)="addtocart(productlist.id)"  >Move To Cart</ion-button>
+            <ion-button size="default" color="danger" expand="full"  (click)="removewishlist(productlist.id)" >Remove Wishlist</ion-button>
+          </div>
+       </ion-col>
+    </ion-row>
+ </ion-grid>
+
+  <!-- <ion-grid *ngIf="deals.length > 0 && loaddata ==1">
+    <ion-row>
+     
+
+       <ion-col class="maincard" size="6" *ngFor="let productlist of deals;let i = index"
+       style="text-align: -webkit-center;margin: 0%; ">
+       <div style="height: 150px; position: relative; margin-bottom: 15px;">
+          <img (click)="productdetails(productlist.id)" class="img-responsive productcatimg" onerror="this.src='/assets/img/placeholder.png';"  [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="productlist.imagePath">
+       </div>
+       <div (click)="productdetails(productlist.id)" class=tx style="color: black; font-size: 12px; margin-bottom: 15px;">{{productlist.label}}</div>
+       <div (click)="productdetails(productlist.id)" class=tx style="color: black; font-size: 12px;"><span style="font-weight: 600;">JustO Deal:</span> &#x20b9; {{productlist.justodeal}}</div>
+       <div (click)="productdetails(productlist.id)" class=tx style="color: black; font-size: 12px;"><span style="font-weight: 600;">MRP:</span> &#x20b9; {{productlist.unit_price}}</div>
+       <div class="main_cart_btn">
+         <ion-button size="default" color="light" expand="full"  style="margin-bottom: 15px;" (click)="addtocart(productlist.id)"  >Move To Cart</ion-button>
+         <ion-button size="default" color="danger" expand="full"  (click)="removewishlist(productlist.id)" >Remove Wishlist</ion-button>
+
+
+       
+       </div>
+    </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+
+     </ion-content>

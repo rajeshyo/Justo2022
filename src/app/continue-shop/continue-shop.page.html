@@ -1,0 +1,130 @@
+
+          <!-- Header -->
+
+  
+          <ion-header >
+            <ion-toolbar >
+              <div class="main-logo">
+                  <div>
+                     <ion-buttons slot="start" style="margin-bottom: .40em;"> 
+                     <ion-back-button defaultHref="/women"></ion-back-button>
+                     </ion-buttons>
+                   </div>
+                    <div class="Home">Item </div>
+              </div>
+            </ion-toolbar>
+       </ion-header>
+    
+     
+        <!-- Image-Slider  -->
+    <ion-content>
+          <ion-slides class="image-slider" loop="true" pager="true" slidesPerView="2" style="height: 35%;">
+              <ion-slide *ngFor="let img of images" >
+                  <img src="assets/img/{{img}}" class="thumb-img" imageViewer>
+              </ion-slide>
+          </ion-slides>
+    
+    
+         <!-- products -->
+        <mat-card>
+            <div class="main-div">
+                <div><b> ONLY</b> Women Floral & Self-Design</div>
+                <div> Gown </div>
+                <div class="text-content">
+                  <br>  <b><i class="fa fa-inr"></i>159900</b>
+                </div>
+                <div class="text" style="color:rgb(241, 127, 198);"> <b>Only Few Left!</b> </div>
+                <div class="text1">
+                    <br> Additional tax may apply; charged at checkout
+                </div>
+             </div>
+        </mat-card>
+        
+      
+          
+ <mat-card >      
+        <div style="display: flex;">
+           <div style="width: 5%"></div>
+           <div style="width: 70%">
+              Select Size
+           </div>
+           <div style="width: 25%; color: rgb(241, 127, 198);">
+              Size Chart
+           </div>
+        </div>
+
+        <div style="height: 1em"></div>
+
+     <div style="display: flex; padding-right: 0%" >
+        <div style="width: 2.5%;"></div>
+        <div style="width: 16%;"><button mat-mini-fab disabled  style="color: black; font-size: 12px;">S</button></div>
+        <div style="width:16%;"><button mat-mini-fab disabled  style="color: black; font-size: 12px;">M</button></div>
+        <div style="width:16%;"> <button mat-mini-fab disabled  style="color: black; font-size: 12px;">L</button></div>
+        <div style="width: 16%;"> <button mat-mini-fab disabled  style="color: black; font-size: 12px;">XL</button></div>
+        <div style="width: 16%;" > <button mat-mini-fab disabled  style="color: black; font-size: 12px;">XXL</button></div>
+        <div style="width: 12%;" > <button mat-mini-fab disabled  style="color: black; font-size: 12px;">3XL</button></div>
+       <!-- <div style="width: 1%;"></div> -->
+    </div>
+</mat-card>     
+    
+    
+        
+     
+    
+         <mat-card>
+            <div class="main_arrow">
+              <div class="wom"><b> Product Description</b> </div>
+              <div class="arrow">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+              </div>
+            </div>
+         </mat-card> 
+           
+         
+    
+          <mat-card>
+              <div class="main_arrow">
+                <div class="wom"><b> Move To Wishlist</b> </div>
+                <div class="arrow">
+                  <mat-icon >keyboard_arrow_right</mat-icon>
+                </div>
+              </div>
+               
+          </mat-card> 
+    
+              <mat-card>
+                  <div class="main_arrow">
+                     <div class="wom"><b> Buyer Gurantee</b> </div>
+                     <div class="arrow">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                     </div>
+                  </div>
+                   
+              </mat-card> 
+    
+    
+    
+               
+    
+     
+         <!-- Add to cart button -->
+       <mat-card>
+          <div class="button"  >
+                <a  tappable (click)="goToEditProfile()" style="font-family: sans-serif; font-size: 12px;">
+              <ion-button color="dark"  (click)="show=!show" style="height: 2em;" >
+                 <ion-icon name="basket" style="margin-bottom: 3px;"></ion-icon> &nbsp;&nbsp; {{show ? 'Continue Shopping' : 'Continue Shopping'}}
+                
+              </ion-button>
+            </a>
+          </div> 
+          
+          
+      </mat-card> 
+          
+       
+      
+             
+               
+    </ion-content>
+    
+      

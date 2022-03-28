@@ -1,0 +1,76 @@
+<ion-toolbar>
+
+  <ion-grid>
+     <ion-row>
+        <ion-col size="2">
+           <div>
+              <ion-buttons slot="start">
+                 <ion-menu-button color="Medium"></ion-menu-button>
+              </ion-buttons>
+           </div>
+        </ion-col>
+
+        <ion-col size="4" style="padding: 0;">
+           <div style="font-size: 17px;">
+              <img (click)="home()" src="../../assets/logo.png" style="padding-top: 5px;">
+              <!-- <b>Justo</b>  -->
+           </div>
+        </ion-col>
+
+        <ion-col size="2" style="text-align: end;">
+           <div>
+              <mat-icon name="search-outline" (click)="search()" class="icon-green-color header-icon-size">search
+              </mat-icon>
+           </div>
+        </ion-col>
+     </ion-row>
+  </ion-grid>
+</ion-toolbar>
+
+<ion-content>
+        <!-- <ion-card> -->
+        <ion-grid class="catalogue_grid">
+           <ion-row>
+              <ion-col size="4" *ngFor="let productcat of cdata;let i = index"
+                 style="text-align: -webkit-center;margin: 0%; ">
+                 <div class="catalogue_sec" >
+                    <img (click)="productdata(productcat.id,productcat.label,0)" class="img-responsive productcatimg" onerror="this.src='/assets/img/placeholder.png';"  [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="productcat.imagePath">
+                 </div>
+                 <div (click)="productdata(productcat.id,productcat.label,0)" class=tx style="color: black; font-size: 12px;padding: 15px 0 10px;">
+                    <!-- {{productcat.label}} -->
+                  </div>
+              </ion-col>
+           </ion-row>
+        </ion-grid>
+     
+
+
+  <!-- Menu -->
+  <div class="menuu">
+     <ion-segment [(ngModel)]="page" color="secondary" style="box-shadow: -2px 0px 3px 1px #c6c6c6;">
+        <!-- <ion-segment-button class="icon"  value="0" (click)="selectedTab(0)" color="danger;">
+        <ion-icon  name="home-outline" class="iconcolor"></ion-icon>
+     </ion-segment-button> -->
+        <ion-segment-button class="icon" value="1" routerLink="/catalouge">
+           <ion-icon name="apps-outline" class="iconcolor icon-green-color"></ion-icon>
+           <p class="menutext icon-green-color">CATALOUGE</p>
+        </ion-segment-button>
+        <ion-segment-button class="icon" routerLink="/account">
+           <ion-icon name="person-outline" class="iconcolor icon-green-color"></ion-icon>
+           <p class="menutext icon-green-color">PROFILE</p>
+        </ion-segment-button>
+        <ion-segment-button class="icon" routerLink="/cart">
+           <ion-icon name="cart-outline" class="iconcolor icon-green-color"></ion-icon>
+           <p class="bagde-icon1" style="right: 10px;">{{cartService.cartItemCount}}</p>
+           <P class="menutext icon-green-color">CART</P>
+        </ion-segment-button>
+        <ion-segment-button class="icon" (click)="wishlistbtn()">
+           <ion-icon name="heart-outline" class="iconcolor icon-green-color"></ion-icon>
+           <p class="bagde-icon1" style="right: 10px;"> {{cartService.wishlistItemCount}}</p>
+           <P class="menutext icon-green-color">WISHLIST</P>
+        </ion-segment-button>
+     </ion-segment>
+  </div>
+  <br><br><br>
+
+</ion-content>

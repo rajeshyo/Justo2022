@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-family: 'Open Sans', sans-serif; font-size: 17px;">SUPPORT TICKET</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="banner">
+    <h1>Support Form</h1>
+    <ion-item>
+      <ion-textarea placeholder="Raise the ticket related to app problem here..."  rows="8" cols="20"></ion-textarea>
+    </ion-item>
+
+    <ion-button style="padding: 1px;" (click)="saveData()" expand="full" color="secondary">Send
+    </ion-button>
+  </div>
+
+</ion-content>

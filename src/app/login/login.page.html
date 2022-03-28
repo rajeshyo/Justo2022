@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-col size="4">
+      <div style="font-size: 20px; text-align: center; color: darkslategrey; font-weight: bold;">Login or Signup</div>
+   </ion-col>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div >
+    <img src="assets/img/Login-Image.jpg" alt="JustO" class="imgage">
+  </div>
+<br/>
+  <blockquote style="text-align: center; font-weight: 500; color: darkgray; font-family: 'Roboto', sans-serif;">
+    Get access to your orders, track previous order & Redeem JustO 
+  </blockquote>
+
+  <!-- <blockquote style="padding-bottom: 10px;">order & Redeem JustO</blockquote> -->
+
+  <ion-footer class="ion-no-border" style="padding-bottom: 40px;">
+    <ion-row>
+      <ion-list lines="full" class="list">
+        <ion-item-group class="ion-margin-horizontal ion-margin-bottom" >
+          <form [formGroup]="loginform" #userpost="ngForm" novalidate (ngSubmit)="onsubmit(userpost.value)">
+           
+       
+     
+
+
+          <div class="container">
+            <fieldset class="field">
+              <legend class="leg">Registered Contact Number</legend>
+              <label for="code" class="label">+91-</label>
+              <ion-input class="input"
+              type="tel"
+              minlength="10"
+              maxlength="10"
+              [(ngModel)]="phone"
+                formControlName="phone"
+                (input)="onChangeusername()"
+                required  [class.error1]="!loginform.controls.phone.valid && loginform.controls.phone.dirty" 
+              >
+              
+              </ion-input>
+            </fieldset>
+            <div *ngIf="loginform.get('phone').hasError('required') && loginform.get('phone').touched" >
+              <p style="color: red;">Please enter your Registered Mobile Number
+              </p> 
+             </div>
+             <div *ngIf="loginform.get('phone').hasError('minlength') && loginform.get('phone').touched" >
+              <p style="color: red;">  Minimum 10 characters
+              </p> 
+             </div>
+             <div *ngIf="loginform.get('phone').hasError('maxlength') && loginform.get('phone').touched" >
+              <p style="color: red;"> Maximum 10 characters</p> 
+             </div>
+             <div *ngIf="loginform.get('phone').hasError('pattern') && loginform.get('phone').touched" >
+              <p style="color: red;">   Mobile Number is Invalid!</p> 
+             </div>
+             <div *ngIf="error != ''" >
+              <p style="color: red;">{{error}}</p> 
+             </div>
+          </div>
+          
+
+          <br>
+          <br>
+          <br>
+          <br>
+
+        <p class="p1"><small>By Continuing, you are agree to the JustO <a>Terms & Conditions</a> and <a>Privacy Policy</a></small></p>
+
+        <br>
+
+
+          <ion-button  expand="block" class="bgcolor" type="submit" [disabled]="!loginform.valid" routerDirection="forward">LOGIN WITH OTP</ion-button>
+ 
+          <br>
+
+          <ion-button expand="block" color="light" style="color: black;" routerLink="/signup" routerDirection="forward">SIGNUP</ion-button>
+          <br>
+
+          <!-- <p style="text-align: center; font-size: 20px; font-weight: bold; color: grey;">
+            <small routerLink="/forget-password" routerDirection="forward">Forget Password?</small>
+          </p> -->
+        </form>
+        </ion-item-group>
+      </ion-list>
+    </ion-row>
+
+    
+  </ion-footer>
+  <!-- <ion-footer class="ion-no-border">
+    <ion-row>
+      <ion-list lines="full" class="list">
+        <ion-item-group class="ion-margin-horizontal ion-margin-bottom">
+          <form>
+
+            <div class="container">
+              <fieldset class="field">
+                <legend class="leg">Registered Contact Number</legend>
+                <label for="code" class="label">+91-</label>
+                <ion-input class="input"
+                type="tel"
+                minlength="10"
+                maxlength="10">
+                </ion-input>
+              </fieldset>
+            </div>
+            
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+          <p class="p1"><small>By Continuing, you are agree to the JustO <a>Terms & Conditions</a> and <a>Privacy Policy</a></small></p>
+
+          <br>
+
+          <ion-button  expand="block" color="secondary" routerLink="/otp" routerDirection="forward">LOGIN WITH OTP</ion-button>
+ 
+          <br>
+
+          <ion-button expand="block" color="light" routerLink="/sign-up" routerDirection="forward">SIGNUP</ion-button>
+
+          <br>
+
+          <p class="p2">
+            <small routerLink="/forget-password" routerDirection="forward">Forget Password?</small>
+          </p>
+          </form>
+        </ion-item-group>
+      </ion-list>
+    </ion-row>
+  </ion-footer> -->
+</ion-content>

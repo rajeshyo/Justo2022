@@ -1,0 +1,134 @@
+<ion-header >
+  <ion-toolbar color="light" >
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/cart"></ion-back-button>
+        </ion-buttons>
+    <ion-title style="font-family: 'Open Sans', sans-serif; font-size: 17px;" >Payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content>
+<ion-card>
+    <div class="offer">
+         <strong>Bank offer</strong>
+    </div>
+         <div class="offer1">
+              <ul><li>10% SuperCash on Mobikwik wallet. </li>
+                    <li>Flat Rs 200 Cashback on PhonePay.</li>
+              </ul>
+         </div>
+</ion-card>
+
+    <div class="main">
+        <div class=pay>
+           PAYMENT OPTIONS
+        </div>
+    </div>
+
+         <mat-card class="payment-option" style="margin-top: 5px;" >
+              <div class="pay-main" style="display: flex;">
+                  <div class="cr">
+                      <strong>Credit/Debit Card</strong>
+                  </div>
+                      <div class="cr1" >
+                          SELECT
+                      </div>
+              </div>
+         </mat-card>
+
+              <mat-card class="payment-option">
+                   <div  class="pay-main">
+                       <div class="cr" style="width: 50%;">
+                             <strong> Cash/Card On Delivery</strong>
+                       </div>
+                           <div class="cr1">
+                               SELECT
+                           </div>
+                   </div>
+               </mat-card>
+
+                        <mat-card class="payment-option">
+                            <div  class="pay-main">
+                                <div class="cr">
+                                    <strong> PhonePe</strong>
+                                </div>
+                                       <div class="cr1">
+                                           SELECT
+                                        </div>
+                           </div>
+                       </mat-card>
+
+                            <mat-card class="payment-option" style="margin-top: 20px;">
+                                <div class="item">
+                                    <strong> 1 ITEM</strong>
+                                </div>
+                            </mat-card>
+
+                                 <mat-card class="payment-option" >
+                                     <div class="viewdetail">
+                                          <div class="view">
+                                               Total <strong>View Details</strong>
+                                           </div>
+                                                  <div class="rs">
+                                                      Rs. 634
+                                                   </div>
+                                      </div>
+                                               <div class="viewdetail">
+                                                    <div class="view">
+                                                       <br>Delivery Charges
+                                                    </div>
+                                                        <div class="rs">
+                                                            <br> Free
+                                                        </div>
+                                               </div>
+                                  </mat-card>
+
+                                         <mat-card class="payment-option" >
+                                             <div class="viewdetail">
+                                                 <div class="view">
+                                                     <strong>    Total Payable</strong>
+                                                 </div>
+                                                 <div class="rs">
+                                                    <strong> Rs. 634</strong>
+                                                  </div>
+                                              </div>
+                                         </mat-card>
+
+                                              <div class="deliver">
+                                                 <div class=deliverto>
+                                                      DELIVER TO
+                                                  </div>
+                                               </div>
+
+                               <mat-card class="payment-option" style="margin-top: 5px;">
+                                     <div class="item">
+                                         <div>
+                                             <strong>Person</strong>
+                                         </div>
+                                          <div>
+                                              Akshya Nagar 1st Block 1st Cross
+                                          </div>
+                                           <div>
+                                              Rammurthy nagar
+                                           </div>
+                                            <div>
+                                              Bangalore-560016
+                                            </div>
+                                            <div style="color:blue;">
+                                                <p routerLink="/newaddress" routerDirection="root"> Change Address</p>
+                                            </div>
+                                     </div>
+                              </mat-card>
+            
+</ion-content>
+<!-- Payment Method -->
+<ion-item>
+  <ion-button color="dark" tappable (click)="removeAddress()">Pay Now</ion-button>
+       
+       
+             
+ </ion-item>     
+ <!-- <ion-button tappable (click)="removeAddress()">pay</ion-button> -->

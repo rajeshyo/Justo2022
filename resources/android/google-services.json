@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "300295106295",
+    "project_id": "justo-6c67e",
+    "storage_bucket": "justo-6c67e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300295106295:android:8212e341d7c97fe295edf2",
+        "android_client_info": {
+          "package_name": "com.app.justo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300295106295-lss7o73e87t6tvovqusts40ka9ao62eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIT92ViAZaCwBosHlX-0ytgsOM3wfkT8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300295106295-lss7o73e87t6tvovqusts40ka9ao62eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

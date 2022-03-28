@@ -1,0 +1,296 @@
+<ion-header>
+  <ion-toolbar>
+ 
+    <!-- <ion-card>  -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <div>
+            <ion-buttons slot="start">
+              <ion-back-button defaultHref="/gown"></ion-back-button>
+            </ion-buttons>
+            <!-- <ion-buttons slot="start">
+              <ion-menu-button color="Medium"></ion-menu-button>
+            </ion-buttons> -->
+          </div>
+        </ion-col>
+
+        <ion-col size="6">
+          <div style="font-size: 18px;"><b> {{details.productname}}</b> </div>
+        </ion-col>
+
+      
+       <ion-col size="1.8" >
+        <div routerLink="/wishlist" routerDirection="root">
+          <!-- <mat-icon (click)="wishlistbtn()" style="color: #0ed0f1; font-size: 32px">favorite</mat-icon> -->
+          <ion-icon name="heart-outline" (click)="wishlistbtn()" class="icon-green-color header-icon-size"></ion-icon>         
+          <p class="bagde-icon"> {{cartService.wishlistItemCount}}</p>
+
+        </div>
+      </ion-col>
+      <ion-col size="1.8" >
+        <div routerLink="/cart" routerDirection="root">
+           <!-- <mat-icon style="color: #0ed0f1; font-size: 32px">shopping_cart</mat-icon> -->
+           <ion-icon name="cart-outline" class="icon-green-color header-icon-size"></ion-icon>          
+           <p class="bagde-icon">{{cartService.cartItemCount}}</p>
+        </div>
+     </ion-col>      
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<!-- Image-Slider  -->
+<ion-content >
+  <div *ngIf="loadadta == 1">
+  <ion-slides class="image-slider" loop="true" pager="true" slidesPerView="2">
+    <ion-slide class="product-image" *ngFor="let image of details.imagePath;let i = index">
+      <img  class="thumb-img" imageViewer onerror="this.src='/assets/img/placeholder.png';" [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="image">
+    </ion-slide>
+  </ion-slides>
+
+
+  <!-- products -->
+  <mat-card>
+    <div class="main-div">
+    
+      <div class="text-content"> 
+          <ion-row class="row-border"> 
+            <ion-col size="5" class="col-item"><i class="fa fa-inr"></i>Brand</ion-col>
+            <ion-col size="7" class="col-value">  {{details.cf_966}}</ion-col>
+          </ion-row>
+          <ion-row class="row-border"> 
+            <ion-col size="5" class="col-item"><i class="fa fa-inr"></i>Product</ion-col>
+            <ion-col size="7" class="col-value">  {{details.cf_905}}</ion-col>
+          </ion-row>
+          <ion-row class="row-border"> 
+            <ion-col size="5" class="col-item"><i class="fa fa-inr"></i>Model</ion-col>
+            <ion-col size="7" class="col-value">  {{details.productname}}</ion-col>
+          </ion-row>
+          <ion-row  class="row-border row-blue"> 
+            <ion-col size="5"  class="col-item"><i class="fa fa-inr"></i>MRP</ion-col>
+            <ion-col size="7" class="col-value">  &#x20b9; {{details.unit_price}}</ion-col>
+          </ion-row>
+          <ion-row  class="row-border row-red">
+             <ion-col size="5" class="col-item"><i class="fa fa-inr"></i>JustO Deal</ion-col>
+             <ion-col size="7" class="col-value" > &#x20b9;   {{details.justodeal}}</ion-col>
+            </ion-row>
+        <!--   <ion-row class="row-border"> 
+            <ion-col size="5" class="col-item"><i class="fa fa-inr"></i>Specifications</ion-col>
+            <ion-col size="7" class="col-value" >  {{details.cf_919}}</ion-col>
+          </ion-row> -->
+      </div>
+        
+
+      <br>  <p  class="header-icon-size-15"><b><i class="fa fa-inr"></i>Specifications</b></p>
+      <div class="text1">
+       
+        <ion-row class="row-border" *ngFor="let spec of specifications;">
+            <ion-col size="5" class=" col-label" *ngIf="spec != '' && spec.split(':').length >= 2"><i class="fa fa-inr"></i> {{spec.split(':')[0]}}</ion-col>
+            <ion-col class="col-label" *ngIf="spec != ''&& spec.split(':').length < 2"><i class="fa fa-inr"></i> {{spec.split(':')[0]}}</ion-col>         
+               <ion-col size="7"  class="col-value" *ngIf="spec != '' && spec.split(':').length >= 2">  {{spec.split(':')[1]}}</ion-col>
+              </ion-row>
+
+    </div>
+
+    <br>  <p  class="header-icon-size-15"><b><i class="fa fa-inr"></i>Features</b></p>
+
+    
+      <div class="text1">
+       
+          <ion-row class="row-border" *ngFor="let feature of features;">
+              <ion-col size="5" class="col-label" *ngIf="feature != '' && feature.split(':').length >= 2"><i class="fa fa-inr"></i> {{feature.split(':')[0]}}</ion-col>
+              <ion-col class="col-label" *ngIf="feature != '' && feature.split(':').length < 2"><i class="fa fa-inr"></i> {{feature.split(':')[0]}}</ion-col>
+              <ion-col size="7"  class="col-value" *ngIf="feature != '' && feature.split(':').length >= 2">  {{feature.split(':')[1]}}</ion-col>
+                </ion-row>
+
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card>
+
+    <!-- <div style="text-align: center; font-size: 15px;">
+   <b> Size Available</b>
+ </div>
+<br><div style="display: flex; width: 100%; ">
+  <div style="width: 12%;"> </div>
+  <div  style="width: 30%; ">
+        <ion-button fill="outline" color="light"  style="width: 40%;font-size: 12px;height: 1.5em;">S</ion-button>
+  </div> 
+  <div style="width: 30%;">
+          <ion-button fill="outline" color="dark" style="width: 40%;font-size: 12px;he;ight: 1.5em;">M</ion-button>
+  </div>
+  <div style="width: 30%;">
+          <ion-button fill="outline" color="danger" style="width: 40%;font-size: 12px;height: 1.5em;">L</ion-button>
+  </div>
+  <div style="width: 30%;">
+          <ion-button fill="outline" color="danger" style="width: 40%;font-size: 12px; height: 1.5em;">XL</ion-button>
+  </div>
+</div> -->
+
+
+
+    <!-- <div style="display: flex;">
+<div style="width: 5%"></div>
+<div style="width: 70%">
+Select Size
+</div>
+<div style="width: 25%; color: rgb(241, 127, 198);">
+Size Chart
+</div>
+</div>
+<div style="height: 1em"></div>
+<div style="display: flex; padding-right: 0%" >
+<div style="width: 2.5%;"></div>
+<div style="width: 16%;"><button mat-mini-fab disabled  style="color: black; font-size: 12px;">S</button></div>
+<div style="width:16%;"><button mat-mini-fab disabled  style="color: black; font-size: 12px;">M</button></div>
+<div style="width:16%;"> <button mat-mini-fab disabled  style="color: black; font-size: 12px;">L</button></div>
+<div style="width: 16%;"> <button mat-mini-fab disabled  style="color: black; font-size: 12px;">XL</button></div>
+<div style="width: 16%;" > <button mat-mini-fab disabled  style="color: black; font-size: 12px;">XXL</button></div>
+<div style="width: 12%;" > <button mat-mini-fab disabled  style="color: black; font-size: 12px;">3XL</button></div>
+
+</div> -->
+
+
+
+
+  </mat-card>
+
+
+
+
+
+
+  <!-- <mat-card>
+    <div class="main_arrow">
+      <div class="wom"><b> Product Description</b> </div>
+      <div class="arrow">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </div>
+    </div>
+
+
+  </mat-card> -->
+
+  <!-- <mat-card>
+    <div class="main_arrow">
+      <div class="wom" routerLink="/wishlist" routerDirection="root"><b> Move To Wishlist</b> </div>
+      <div class="arrow">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </div>
+    </div>
+
+  </mat-card> -->
+
+  <!-- <mat-card>
+    <div class="main_arrow">
+      <div class="wom"><b> Buyer Gurantee</b> </div>
+      <div class="arrow">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </div>
+    </div>
+
+  </mat-card> -->
+
+
+
+  <!-- <div class="main-div1">
+          <div class="rs">
+              <b>Best Price: <i class="fa fa-inr"></i>159900</b> 
+          </div>
+         
+             
+                  <div class="text11">
+                     <br><b> Max Discount: 20% of MRP</b>
+                  </div>
+      </div> -->
+
+
+  <!-- <mat-card style="font-size: 14px;">
+
+<b> Item Specification</b>
+
+</mat-card>
+<mat-card style="font-size: 14px;">
+
+  <b>  Move To WishList</b>
+   
+    </mat-card>
+    <mat-card style="font-size: 14px;">
+
+      <b>  Buyer Gurantee</b>
+       
+        </mat-card> -->
+
+
+  <!-- Add to cart button -->
+  <mat-card>
+
+    
+    <!-- <div class="button"  >
+      <a  tappable (click)="goToEditProfile()" style="font-family: sans-serif; font-size: 12px;">
+    <ion-button color="dark"  (click)="show=!show" style="height: 2em;" >
+       <ion-icon name="basket" style="margin-bottom: 3px;"></ion-icon> &nbsp;&nbsp; {{show ? 'ADD TO BAG' : 'ADD TO BAG'}}
+      
+    </ion-button>
+  </a>
+</div>  -->
+
+<ion-button expand="full"  (click)="addtocart(details.id)" 
+style=" font-size: 12px;  font-family: 'Open Sans', sans-serif; " class="bgcolor">
+<ion-icon name="cart-outline" zoom="1" style="margin-bottom: 3px;"></ion-icon>
+&nbsp; Add to Cart
+</ion-button>
+
+<!-- <ion-button expand="full"  routerLink="/cart"
+style=" font-size: 12px;  font-family: 'Open Sans', sans-serif; " color="secondary">
+<ion-icon *ngIf="this.isButtonVisible" name="cart-outline" zoom="1" style="margin-bottom: 3px;"></ion-icon>
+&nbsp; Go to Cart
+</ion-button> --> 
+
+<!-- <span  *ngFor="let cartid of cart;let i = index">
+ {{cartid.id}}
+    <ion-button expand="full"  (click)="addtocart(details.id)" *ngIf="cartid.id==details.id && inboundClick"
+      style=" font-size: 12px;  font-family: 'Open Sans', sans-serif; " color="secondary">
+      <ion-icon  name="cart-outline" zoom="1" style="margin-bottom: 3px;"></ion-icon>
+      &nbsp; Go to Cart
+    </ion-button>
+    <ion-button expand="full"  (click)="addtocart(details.id)" *ngIf="cartid.id!=details.id && outboundClick"
+      style=" font-size: 12px;  font-family: 'Open Sans', sans-serif; " color="secondary">
+      <ion-icon  name="cart-outline" zoom="1" style="margin-bottom: 3px;"></ion-icon>
+      &nbsp;  Add to Cart
+    </ion-button>
+
+  </span> -->
+
+
+  </mat-card>
+
+
+</div>
+
+<!-- <span  *ngFor="let cartid of cart;let i = index" >
+  <div *ngIf="cartid.id==details.id && this.isButtonVisible1">
+    <ion-button expand="full"  (click)="addtocart(details.id)" 
+    style=" font-size: 12px;  font-family: 'Open Sans', sans-serif; " color="secondary">
+    <ion-icon  name="cart-outline" zoom="1" style="margin-bottom: 3px;"></ion-icon>
+    &nbsp;  Add to Cart
+  </ion-button>
+  </div>
+<div *ngIf="cartid.id!=details.id && this.isButtonVisible">
+  <ion-button expand="full"  (click)="addtocart(details.id)" 
+  style=" font-size: 12px;  font-family: 'Open Sans', sans-serif; " color="secondary">
+  <ion-icon  name="cart-outline" zoom="1" style="margin-bottom: 3px;"></ion-icon>
+  &nbsp;  Go to Cart
+</ion-button>
+</div>
+    
+  </span> -->
+
+
+</ion-content>
+
+
+<!-- <ion-buttons slot="start">
+  <ion-back-button defaultHref="/gown"></ion-back-button>
+</ion-buttons> -->

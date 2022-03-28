@@ -1,0 +1,45 @@
+
+  <!-- Header -->
+  <ion-header >
+    <ion-toolbar color="light" >
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/account"></ion-back-button>
+          </ion-buttons>
+      <ion-title style="font-family: 'Open Sans', sans-serif; font-size: 15px;" >Address</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+     <mat-card >
+       <a href="/newaddress"> <strong>+ADD NEW ADDRESS</strong></a>
+     </mat-card>
+  
+      <div class="main">
+          <div class=pay>
+            DEFAULT ADDRESS
+          </div>
+      </div>
+  
+          <mat-card >
+            <div><strong> Avii</strong></div>
+            <div><br> Akshya Nagar 1st Block 1st Cross</div>
+            <div> Rammurthy nagar  </div>
+            <div>   Bangalore-560016   </div>
+            <div><br>+9234567890 </div>
+          </mat-card> 
+                
+       <mat-card >
+           <div class="main-address" >
+             <div style="width: 20%;"></div>
+              <div class="edit" >
+                <a href="/newaddress" style="color:black;"> <strong>Edit</strong></a>
+              </div>
+                <div class="bar" >  | </div>
+                <div class="remove" >
+                    <p text-center tappable (click)="removeAddress()"  >
+                    <strong > Remove</strong>
+                    </p>
+               </div>
+           </div>
+      </mat-card>
+    </ion-content>

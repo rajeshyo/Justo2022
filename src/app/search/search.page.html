@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>SEARCH</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-toolbar>
+    <!--  <ion-buttons slot="start">
+       <ion-button layout="ion-only">
+         &nbsp;
+       </ion-button>
+     </ion-buttons> -->
+     
+     <ion-searchbar mode="ios" [(ngModel)]="userlog.username" style="padding: 16px 10px;" (ionChange)="resetFilters_clear($event)"  (ionClear) ="resetFilters()" (ionCancel) ="resetFilters()"></ion-searchbar> 
+     <ion-buttons slot="end">
+       &nbsp;
+        <!-- <ion-button (click)="applyFilters()" class="ion-text-capitalize"  color="dark" fill="outline" shape="round"> 
+         Go
+       </ion-button> -->
+   
+       <ion-button (click)="search()" size="large"  class="icon-green-color"  fill="outline"   >Go</ion-button>
+     </ion-buttons>
+   </ion-toolbar>
+   
+
+    <!-- <ion-grid>
+      <ion-row>
+         <ion-col class="maincard" size="6" *ngFor="let productlist of Products;let i = index"
+            style="text-align: -webkit-center;margin: 0%; "  >
+            <div class="p-image" >
+              <img (click)="productdetails(productlist.productid)" class="img-responsive productcatimg"  onerror="this.src='/assets/img/placeholder.png';"  [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="productlist.imagePath">
+            </div>
+            <div>
+              <div (click)="productdetails(productlist.id)" class="tx" style="color: black; font-size: 12px; margin-bottom: 15px;">{{productlist.cf_966}}</div>
+              <div (click)="productdetails(productlist.productid)" class="tx" style="color: black; font-size: 12px; margin-bottom: 15px;">{{productlist.productname}}</div>
+              <div (click)="productdetails(productlist.id)" class="tx tx2" style="color: #fff; font-size: 12px;"> <span style="font-weight: 600;">MRP:</span> <b> &#x20b9; {{productlist.unit_price}}</b></div>
+              <div (click)="productdetails(productlist.id)" class="tx tx1" style="  font-size: 12px;"> <span style="font-weight: 600;">JustO DEAL:  &#x20b9; {{productlist.justodeal}}</span></div>
+  
+                        </div>
+       
+            <div class="main_cart_btn"   (click)="addtocart(productlist.productid)">
+              <ion-button size="default" color="light" style="margin-bottom: 25px;"   >Add To Cart</ion-button>
+
+            </div>
+         </ion-col>
+      </ion-row>
+   </ion-grid> -->
+
+
+   <div class="cart-items">
+    <ion-card *ngFor="let productlist of Products;let i = index">
+      <ion-card-content>
+        <div class="item-img">
+          <img (click)="productdetails(productlist.productid)" class="img-responsive productcatimg" onerror="this.src='/assets/img/placeholder.png';" [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="productlist.imagePath">
+        </div>
+  
+        <div class="item-info">
+          <p (click)="productdetails(productlist.productid)">{{productlist.cf_966}}</p>
+          <p (click)="productdetails(productlist.productid)">{{productlist.productname}}</p>
+          <div class="tx1">
+            <span (click)="productdetails(productlist.productid)">MRP: &#x20b9; {{productlist.unit_price}}</span>
+          </div>
+          <div class="tx2">
+            <span (click)="productdetails(productlist.productid)">JustO DEAL: &#x20b9; {{productlist.justodeal}}</span>
+          </div>
+        </div>
+        <span (click)="wishlis1(productlist.productid)">
+          <ion-icon style="font-size: 20px;" [name]="productlist.isfilled ? 'heart' : 'heart-outline' "  (click)="toggleWishlist(productlist)"></ion-icon>
+        </span>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  
+</ion-content>

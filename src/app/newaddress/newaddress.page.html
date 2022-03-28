@@ -1,0 +1,52 @@
+<ion-header >
+  <ion-toolbar color="light" >
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/address"></ion-back-button>
+  </ion-buttons>
+    <ion-title style="font-family: 'Open Sans', sans-serif; font-size: 17px;" >Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <div class="example-container">
+          <form  class="example-form">
+              <mat-card>
+                 <mat-form-field >
+                     <input matInput placeholder="Enter your name"  required>
+                 </mat-form-field>
+
+                 <mat-form-field>
+                    <input matInput placeholder="Enter your email"  required>
+                 </mat-form-field>
+              <!-- </mat-card> -->
+                       
+                          
+             <!-- <div style="height: 15%"></div> -->
+                            
+             <!-- <mat-card> -->
+               <mat-form-field >
+                  <input matInput placeholder="Pincode"  required>
+               </mat-form-field>
+
+               <mat-form-field >
+                  <input matInput placeholder="Address(House No, Building, Area)"  required>
+               </mat-form-field>
+            </mat-card>
+                            
+                           
+                          <div style="height: 2%"> </div>
+                           
+                            <mat-card >
+                                <p text-center tappable (click)="saveAdd()" >
+                                    <ion-text color="dark">
+                                       <ion-button color="light" style="width: 25%; height: 2em;">   <strong>Save</strong></ion-button>
+                                    </ion-text>
+                                 </p>
+                           </mat-card>
+      </form>
+   </div>
+ </ion-content>
+
+
+
+                          

@@ -1,0 +1,45 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start" style="padding-right: 60px;">
+      <ion-back-button defaultHref="/login" color="white"></ion-back-button>
+    </ion-buttons>
+    <ion-col size="4" class="ion-padding-start">
+      <div style="font-size: 20px; color: darkslategrey; font-weight: bold;">Login using OTP</div>
+   </ion-col>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center ion-no-border" style="padding-bottom: 80px;">
+  <div>
+    <ion-list lines="none">
+      <ion-item style="margin-top: 25px; font-weight: 400; text-align: center;" class="ion-padding-bottom">
+        Please check the OTP sent to your mobile number
+      </ion-item>
+  
+      <ion-item style="color: darkgray;">
+        Enter OTP
+      </ion-item>
+
+      <form [formGroup]="otpform" #userpost="ngForm" novalidate (ngSubmit)="onsubmit()">
+        <div class="userInput" style="padding-bottom: 40px;">
+          <input class="inputotp" [(ngModel)]=" userotp.otp1" formControlName="otp" type="tel" name='otp1' #otp1 maxlength="1" (keyup)="move($event, '', otp1, otp2)">
+          <input class="inputotp" [(ngModel)]=" userotp.otp2" formControlName="otp" type="tel" name="otp2" #otp2 maxlength="1" (keyup)="move($event, otp1, otp2,otp3)">
+          <input class="inputotp" [(ngModel)]=" userotp.otp3" formControlName="otp" type="tel" name='otp1' #otp3 maxlength="1" (keyup)="move($event, otp2, otp3,otp4)">
+          <input class="inputotp" [(ngModel)]=" userotp.otp4" formControlName="otp" type="tel" name="otp2" #otp4 maxlength="1" (keyup)="move($event, otp3, otp4,otp5)">
+          <input class="inputotp" [(ngModel)]=" userotp.otp5" formControlName="otp" type="tel" name='otp1' #otp5 maxlength="1" (keyup)="move($event, otp4, otp5,otp6)">
+          <input class="inputotp" [(ngModel)]=" userotp.otp6" formControlName="otp" type="tel" name="otp2" #otp6 maxlength="1" (keyup)="move($event, otp5, otp6,otp1)">
+          
+        </div>
+        <div *ngIf="otpform.get('otp').hasError('required') && otpform.get('otp').touched" >
+          <p style="color: red;">Please enter your otp</p> 
+         </div>
+        <ion-button type="submit" [disabled]="!otpform.valid" expand="block" class="ion-padding-start ion-padding-end" color="secondary">SEND</ion-button>
+
+      </form>
+      
+    </ion-list>
+
+  </div>
+  <!-- <p style="padding-top: 10px; padding-left: 2px; font-size: 14px; font-weight: bold; color: grey;"><small>Log in using <a>Password</a></small></p> -->
+
+</ion-content>

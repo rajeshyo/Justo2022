@@ -1,0 +1,223 @@
+ion-grid{
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+
+  .pricelist {
+    margin: 5px 0;
+
+    & ion-item {
+      padding: 0;
+      margin: 0;
+      border-bottom: 1px solid #cec0c0c4;
+      background: white;
+      
+    }
+
+  }
+
+  ion-col{
+    margin: auto;
+    color:'medium';
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+  }
+
+  .empty {
+    box-shadow: none;
+    margin-top: 6em;
+
+    & img {
+      width: 65px;
+      height: 65px;
+      margin: 30px auto;
+    }
+
+    ion-button {
+      padding: 0 80px;
+    }
+    .cimage{
+      font-size: 65px;
+    }
+
+  }
+
+
+.bag{
+    font-size: 13px;
+    height: 5%;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+ 
+    text-align: left;
+    
+}
+
+.offer{
+   
+    height: 50%;
+    color:rgb(110, 228, 228);
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+.offer1{
+  font-size: 13px;
+  margin-right: -2em;
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+}
+
+
+
+
+.main-logo{
+  display: flex;
+   width: 100%;
+    border-bottom: 1px solid #f1f1f1;
+   
+ }
+
+.menu{
+  width: 15%;
+  }
+  .Home{
+    margin-top: .3em;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: black;
+    width: 50%;;
+  }
+  .basket{
+    width: 11%;
+    margin-top: .3em;
+    color:'medium';
+  }
+  .search{
+   width: 12%;
+   margin-top: .3em;
+   color:'medium';
+  }
+  .wish{
+    width: 12%;
+    margin-top: .3em;
+    color:'medium';
+   }
+
+  .main{
+      display: flex;
+      width: 100%;
+  }
+  .content{
+      
+      margin-top: 17%;
+      width: 65%;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      color: black;
+  }
+  .content1{
+    text-align: right;
+     width: 50%;
+  }
+  .pic{
+      width: 50%;
+  }
+  
+  .www{
+    background-color: #f1f1f1;
+    border: 1px;
+    text-align: left;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+   height: 3em;
+    letter-spacing: .5px;
+    border-radius: 0px;
+  
+  }
+  .col-md-12{
+    padding: 12px;
+  
+}
+    .cat-women{
+        font-size: 12px;
+       margin-left: 1em;
+        letter-spacing: .5px;
+        font-weight: lighter;
+        font-family: 'Open Sans', sans-serif;
+        color: black;
+       
+        
+     
+  }
+
+  mat-card{
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 11px; 
+    border-radius: 0%;
+    // width: 92%;
+    margin: auto;
+}
+.edit{
+  font-size: 15px; 
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid #c8c7c9;
+  // color:black;
+  // text-decoration: none;
+}
+.remove{
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+  font-size: 15px; 
+}
+// a {
+//   text-decoration: none !important;
+// }
+a {
+  text-decoration: none !important;
+}
+
+.main_edit{
+  display: flex;
+   width: 100%;
+}
+
+.blank{
+  font-size: 15px;
+   width: 15%;
+}
+
+.women-bag{
+  display: flex;
+
+}
+
+.total{
+  display: flex; 
+  font-size: 14px;
+   margin-left: 3em;
+}
+
+
+
+.qty-btn{
+    color: black;
+    width: 25px;
+    padding: 5px 10px;
+    background-color: #c8c7c9;
+    border: 1px solid gray;
+    height: 25px;
+
+}
+
+.qty-input-btn{
+  width: 25px;
+  color: black;
+  background-color: #fff;
+  height: 25px;
+  border: 1px solid gray;
+  text-align: center;
+}

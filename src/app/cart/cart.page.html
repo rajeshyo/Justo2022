@@ -1,0 +1,172 @@
+<ion-header >
+      <ion-toolbar >
+    
+        <ion-grid>
+          <ion-row>
+             <ion-col size="2">
+                <div>
+                   <ion-buttons slot="start">
+                      <ion-menu-button color="Medium"></ion-menu-button>
+                   </ion-buttons> 
+                </div>
+             </ion-col>
+
+             <ion-col size="6">
+                <div style="font-size: 17px;"><b>SHOPPING CART</b> </div>
+             </ion-col>
+
+             <ion-col size="1.8" >
+               <div routerLink="/wishlist" routerDirection="root">
+                 <!-- <mat-icon (click)="wishlistbtn()" style="color: #0ed0f1; font-size: 32px">favorite</mat-icon> -->
+                 <ion-icon name="heart-outline" (click)="wishlistbtn()" class="icon-green-color header-icon-size"></ion-icon>
+                
+                 <p class="bagde-icon"> {{cartService.wishlistItemCount}}</p>
+       
+               </div>
+             </ion-col>
+             <ion-col size="1.8" >
+               <div routerLink="/cart" routerDirection="root">
+                  <!-- <mat-icon style="color: #0ed0f1; font-size: 32px">shopping_cart</mat-icon> -->
+                  <ion-icon name="cart-outline" class="icon-green-color header-icon-size"></ion-icon>
+                 
+                  <p class="bagde-icon">{{cartService.cartItemCount}}</p>
+               </div>
+            </ion-col>
+          </ion-row>
+       </ion-grid> 
+     </ion-toolbar>
+  </ion-header>        
+         
+    
+  
+     
+<ion-content>
+ <ion-card class="ion-text-center empty" *ngIf="cart.length ===0 && loaddata ==1">
+   <ion-card-header>
+      <ion-icon class="cimage icon-green-color" name="cart-outline"></ion-icon>
+     <ion-card-title>Your cart is empty!</ion-card-title>
+     <ion-card-subtitle>Add items to it now.</ion-card-subtitle>
+   </ion-card-header>
+
+   <ion-card-content>
+     <ion-button class="bgcolor" expand="block" size="small" routerLink="/home">
+      Shop now
+     </ion-button>
+   </ion-card-content>
+
+
+ </ion-card>
+ <ion-card *ngFor="let productlist of cart;let i = index">
+      <div class="main" style="background-color: rgb(255, 255, 255);padding: 20px 0px;">
+         <div class="pic" style="margin: auto;
+         text-align: center;">
+            <img (click)="productdetails(productlist.id)" style="height: auto; width: 50%;" onerror="this.src='/assets/img/placeholder.png';"  [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="productlist.imagePath">
+           
+         </div>
+
+         <div class="content" style="margin-top: 4px;" >
+            <p style="margin: 0px 0; font-weight: 600;">{{productlist.cf_966}}</p>   
+            <p style="margin: 0px 0; font-weight: 600;">{{productlist.label}}</p>   
+
+            <p> <span style="font-weight: 600;">JustO Deal:</span>   &#x20b9;  {{productlist.justodeal}}</p> 
+            <!-- <p> <span style="font-weight: 600;">MRP:</span>   &#x20b9;  {{productlist.unit_price}}</p>  -->
+          
+            <div>
+               <button (click)="qtyde(i)" class="qty-btn" >-</button>
+                     <input type="number" class="qty-input-btn"  [value]="productlist.quantity" [(ngModel)]="productlist.quantity">
+                     <button (click)="qtyin(i)" class="qty-btn">+</button>
+                       
+            </div>
+           
+            <br>
+           
+         </div>
+         
+     </div>
+   
+ 
+   <ion-button class="bgcolor" expand="full" (click)="removeaddtocart(productlist.id)">Delete</ion-button>
+        
+  </ion-card>
+
+  <!-- <mat-card style="padding: 0;"> -->
+   <!-- <div class="main_edit"> -->
+         <!-- <div style="width: 5%;">
+            
+         </div> -->
+
+       <!-- <div class="edit" >
+            <p style="margin-bottom: 0;" text-center tappable (click)="removeaddtocart(productlist.id)"  >
+             Delete
+            </p>
+      </div> -->
+
+         <!-- <div class="blank">
+
+         </div> -->
+         
+         <!-- <div class="remove" *ngIf="productlist.bannerProduct == false">
+      <p style="margin-bottom: 0;" text-center tappable (click)="wishlist(productlist.id)"
+      style="color:#007185;">
+      Move to Wishlist
+         </p>
+           </div> -->
+   <!-- </div> -->
+   <!-- </mat-card> -->
+
+
+
+<div *ngIf="cart.length > 0">
+ <mat-card>
+     <div class="container-fluid www" >
+        <div class="row">
+            <div class="col-md-12">
+                <b> Order Details</b>
+            </div>
+       </div>
+   </div>
+</mat-card>
+
+ <mat-card>
+
+   <ion-row class="row-border"> 
+      <ion-col size="6" class="col-item"><i class="fa fa-inr"></i>Total Value</ion-col>
+      <ion-col size="6" class="ion-text-end">  {{subtotal  | currency:'INR'}}</ion-col>
+    </ion-row>
+    <ion-row class="row-border"> 
+      <ion-col size="6" class="col-item"><i class="fa fa-inr"></i>Discount</ion-col>
+      <ion-col size="6" class="ion-text-end">  {{totalDiscont  | currency:'INR'}}</ion-col>
+    </ion-row>
+    <ion-row class="row-border"> 
+      <ion-col size="6" class="col-item"><i class="fa fa-inr"></i>Delivery Charges</ion-col>
+      <ion-col size="6" class="ion-text-end">  FREE</ion-col>
+    </ion-row>
+    <ion-row > 
+      <ion-col size="6" class="col-item"><b>TOTAL</b></ion-col>
+      <ion-col size="6" class="ion-text-end"> <b> <i class="fa fa-inr"> </i>{{ totalFinal | currency:'INR'}} </b> </ion-col>
+    </ion-row>
+    
+   
+   
+</mat-card> 
+
+     
+   </div>
+
+
+
+   
+</ion-content>
+
+<ion-toolbar *ngIf="cart.length > 0">
+ 
+      <div class="container" style="margin-bottom: .3em;">
+         <div class="pull-right"  >
+
+           <!-- <ion-button color="dark" (click)="placeorder()" routerDirection="root" style="margin-left: 37px;width: 80%; font-size: 12px; height: 2.5em;">Place Order</ion-button>  -->
+           <ion-button style="padding: 1px;" (click)="placeorder()" expand="full" class="bgcolor">Place Order
+         </ion-button>
+      </div>
+         </div>
+     
+</ion-toolbar>

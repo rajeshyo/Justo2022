@@ -1,0 +1,90 @@
+<ion-split-pane contentId="main-content">
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-content>
+      <ion-list class="ion-text-center main-header bgcolor1">
+        <div align="center" *ngIf="userlogin == 1 && userdata !=null">
+          <ion-avatar>
+            <!-- <img src="assets/Avatar5.png" style="height: 72px;"/> -->
+            <img  onerror="this.src='assets/Avatar5.png';" [defaultImage]="'assets/Avatar5.png'" [lazyLoad]="userdata.imagename">
+          </ion-avatar>
+          <ion-label color="white">
+            {{userdata.first_name}}
+            <p>
+              <mailto:ion-text>{{userdata.email1}}</ion-text>
+              <!-- <mailto:ion-text>{{userdata.phone_mobile}}</ion-text> -->
+            </p>
+            <p>
+              <mailto:ion-text>{{userdata.phone_mobile}}</ion-text>
+            </p>
+          </ion-label>
+          <ion-label>
+           
+          </ion-label>
+          
+        </div>
+      </ion-list>
+
+      <ion-list class="menu-items" lines="none">
+
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index" >
+          <ion-item (click)="selectedIndex = i" routerDirection="root"  [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+            <ion-icon slot="start" [ios]="p.icon" [md]="p.icon" class="icon-green-color"></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+          
+        </ion-menu-toggle>
+   
+
+        <div *ngIf="userlogin == 1">
+          <ion-menu-toggle auto-hide="false" *ngIf="roleId == 'H11'">
+        <ion-item auto-hide="false"  routerDirection="root"  routerLink="/dealer">
+          <ion-icon
+            slot="start"
+            src="/assets/icon/sparkles-outline.svg"
+            class="icon-green-color"
+          ></ion-icon
+          >My Dealers
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle auto-hide="false" *ngIf="roleId == 'H11'">
+        <ion-item auto-hide="false"  routerLink="/visit">
+          <ion-icon
+            slot="start"
+            src="/assets/icon/storefront-outline.svg"
+            class="icon-green-color"
+          ></ion-icon
+          >My Visits
+        </ion-item>
+</ion-menu-toggle>
+
+        <ion-item (click)="logout()" routerDirection="forward">
+          <ion-icon
+            slot="start"
+            src="/assets/icon/exit-outline.svg"
+            class="icon-green-color"
+          ></ion-icon
+          >Logout
+        </ion-item>
+      </div>
+      </ion-list>
+    </ion-content>
+
+    <div>
+      <ion-footer >
+        <ion-item lines="none" class="item1">
+          <ion-label color="light">Reach us via</ion-label>
+          <a href="tel:8050010030" class="socal">
+            <ion-icon slot="end" name="call-outline" color="light"></ion-icon>
+          </a>
+          <a href="mailto:info@justo4u.com" class="socal">
+          <ion-icon slot="end" name="mail-outline" color="light" (click)="sendemail()"></ion-icon>
+          </a>
+          <a href={{url}} class="socal">
+          <ion-icon slot="end" name="logo-whatsapp" color="light"></ion-icon>
+          </a>
+        </ion-item>
+      </ion-footer>
+    </div>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>

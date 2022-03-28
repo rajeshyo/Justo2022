@@ -1,0 +1,113 @@
+ion-menu ion-content {
+  * {
+    font-family: inherit;
+  }
+  letter-spacing: 0.5px;
+  // background-color: white;
+  // --background: var(
+  //   --ion-item-background,
+  //   var(--ion-background-color, var(--ion-color-warning))
+  // );
+  .main-header {
+    height: 31vh;
+    width: 120%;
+    // background-color: $bgcolor;
+    // background: linear-gradient(
+    //   90deg,
+    //   var(--ion-color-dark) 0%,
+    //   var(--ion-color-dark) 100%
+    // );
+    box-shadow: 0 1px 10px var(--ion-color-light);
+    border-radius: 0 0 50% 50%;
+    margin-left: -4.5vh;
+    div {
+      transform: translateY(3vh);
+      ion-avatar {
+        width: 10vh;
+        height: 10vh;
+        background-color: white;
+        // background: var(--ion-color-white);
+        margin-bottom: 5px;
+        border: 1px solid white;
+        // border: 7px solid var(--ion-color-primary);
+        img {
+          height: 101%;
+        }
+      }
+      ion-label {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: white;
+        p {
+          margin-top: 3px;
+          ion-text {
+            font-size: 0.7rem;
+            font-family: inherit;
+          }
+        }
+      }
+    }
+  }
+  .menu-items {
+    padding-left: 20px;
+    ion-item.selected {
+      --background: rgba(var(--ion-color-primary-rgb), 0.14);
+      border-left: 5px solid var(--ion-color-tertiary);
+      ion-label {
+        color: var(--ion-color-tertiary);
+        font-weight: bold;
+      }
+    }
+    ion-item.selected ion-icon {
+      color: var(--ion-color-tertiary);
+    }
+  }
+}
+
+ion-menu ion-footer {
+  ion-toolbar {
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+.menu-items {
+  margin: 0px;
+
+  ion-icon {
+    margin-right: 20px;
+    color: #259b8d;
+  }
+
+  ion-items {
+    padding-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  .active {
+    border-left: 5px solid;
+    color: #628cff;
+    padding-left: 15px;
+
+    ion-icon {
+      color: #628cff;
+    }
+  }
+}
+
+.item {
+  font-size: 15px;
+  font-weight: bold;
+  font-family: inherit;
+}
+.item1{
+  --background:#259b8d;
+}
+.socal{
+ 
+  padding: 12px;
+  font-size: 22px;
+ 
+}
+.iconcolor{
+  color: #259b8d;
+}

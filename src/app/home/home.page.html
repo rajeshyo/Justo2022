@@ -1,0 +1,241 @@
+<ion-toolbar>
+
+   <ion-grid>
+      <ion-row>
+         <ion-col size="2">
+            <div>
+               <ion-buttons slot="start">
+                  <ion-menu-button color="Medium"></ion-menu-button>
+               </ion-buttons>
+            </div>
+         </ion-col>
+
+         <ion-col size="4" style="padding: 0;">
+            <div style="font-size: 17px;">
+               <img (click)="home()" src="../../assets/logo.png" style="padding-top: 5px;">
+               <!-- <b>Justo</b>  -->
+            </div>
+         </ion-col>
+
+         <ion-col size="2" style="text-align: end;">
+            <div>
+               <mat-icon name="search-outline" (click)="search()" class="icon-green-color header-icon-size">search
+               </mat-icon>
+            </div>
+         </ion-col>
+      </ion-row>
+   </ion-grid>
+</ion-toolbar>
+
+<ion-content>
+
+<!--    <img [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="'https://via.placeholder.com/728x90.png'"  />
+ -->
+   <ion-slides #slider (ionSlideWillChange)="moveButton()">
+
+      <!-- Home Page -->
+      <ion-slide>
+         <div class="c1">
+            <!-- deal section -->
+            <div>
+
+<!--                <div class="blink" *ngIf="deals.length > 0"><span class="blog-graphic-text">Today's Deals!</span></div>
+ -->
+     
+ <ion-slides class="image-slider" loop="true" pager="false" [options]="slideOptsOne" #slideWithNav
+                  (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)"  style=" width: 100%;">
+                     <ion-slide style="position: relative;" *ngFor="let deal of deals">
+                     <img (click)="dealdata(deal.id, 'Deal Of The Day')" style="height:auto; width: 100%; "
+                        class="thumb-img" onerror="this.src='/assets/img/placeholder.png';" [src]="deal.imagePath">
+                    <!--  <div class="dealtimer"> <span *ngIf="deal.timeLeft.d > 0">{{deal.timeLeft.d}}d </span>{{deal.timeLeft.h}}h {{deal.timeLeft.i}}m</div> -->
+                     <div class="dealtimer">{{deal.timer}}</div>
+                     
+                  </ion-slide>
+               </ion-slides>
+
+            </div>
+
+            <br>
+            <!-- Main Cat list -->
+            <div>
+
+
+               <mat-card class="cardmain" style="padding: 4px;">
+
+                  <ion-grid *ngIf="topdata.length > 0" style="border-bottom: none; padding: 0px;">
+                     <ion-row>
+                       <ion-col size="1">
+                         <span class="slider-nav arrow-prev" (click)="slidePrev(sliderTwo,slideWithNav2)">
+                           <div class="prev-icon-custom custon-nav" [class.disabled]="sliderTwo.isBeginningSlide"><ion-icon name="chevron-back-outline"></ion-icon></div>
+                         </span>
+                       </ion-col>
+                       <ion-col size="10">
+                 
+                         <ion-slides pager="false" [options]="slideOptsTwo" #slideWithNav2
+                           (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)">
+                           <ion-slide *ngFor="let s of sliderTwo.slidesItems">
+                              <ion-row>
+                                 <ion-col class="productcat" style="text-align: -webkit-center;margin: 0%;"
+                                    routerDirection="root">
+                                    <div>
+                                       <!-- <img (click)="productdata( s.id)" onerror="this.src='/assets/img/placeholder.png';" [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="s.imagePath" style="height: 60px;"> -->
+                                       <img (click)="productdata( s.id, s.label,0)" onerror="this.src='/assets/img/placeholder.png';" [src]="s.imagePath" style="height: 60px;">
+                                    </div>
+                                    <div class=tx style="color: black;" (click)="productdata( s.id, s.label,0)">
+                                       <!-- {{ s.label}} -->
+                                    </div>
+                                 </ion-col>
+                              </ion-row>
+                           </ion-slide>
+                         </ion-slides>
+                 
+                       </ion-col>
+                       <ion-col size="1">
+                         <span class="slider-nav arrow-next" (click)="slideNext(sliderTwo,slideWithNav2)">
+                           <div class="next-icon-custom custon-nav" [class.disabled]="sliderTwo.isEndSlide"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                         </span>
+                       </ion-col>
+                     </ion-row>
+                   </ion-grid>
+
+
+                  <!-- <div class="ccn " style="display: flex;" routerDirection="root">
+                     <ion-slides class="image-slider slider-pager" [options]="slideOptsThree" style=" width: 100%;" #slideWithNav2>
+                        <ion-slide *ngFor="let productcat of cdata;let i = index">
+
+                           <ion-grid style="border-bottom: none;">
+                              <ion-row>
+                                 <ion-col class="productcat" style="text-align: -webkit-center;margin: 0%;"
+                                    routerDirection="root">
+                                    <div>
+                                       <img (click)="productdata(productcat.id)" onerror="this.src='/assets/img/placeholder.png';" [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="productcat.imagePath" style="height: 60px;">
+                                    </div>
+                                    <div class=tx style="color: black;" (click)="productdata(productcat.id)">
+                                       {{productcat.label}}
+                                    </div>
+                                 </ion-col>
+                              </ion-row>
+                           </ion-grid>
+                        </ion-slide>
+                     </ion-slides>
+                  </div> -->
+               </mat-card>
+
+            </div>
+            <br>
+            <!-- Hyper deal section -->
+
+
+            <div>
+<!--                <div class="blink" *ngIf="deals1.length > 0"><span class="blog-graphic-text">Hyper Deals!</span></div>
+ -->
+ 
+               <ion-slides class="image-slider" loop="true" pager="false" [options]="slideOptsOne" #slideWithNav
+                  (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)" slidesPerView="1" style=" width: 100%;">
+
+                  <!-- <ion-slide *ngFor="let img of images">
+                     <img src="assets/img/{{img}}" class="thumb-img">
+                  </ion-slide> -->
+
+
+                  <ion-slide *ngFor="let deal1 of deals1">
+                     <img (click)="dealdata(deal1.id,'Hyper Deal')" style="height:auto; width: 100%; " class="thumb-img" onerror="this.src='/assets/img/placeholder.png';"  [src]="deal1.imagePath" >
+
+                  </ion-slide>
+               </ion-slides>
+               <!-- <img src="assets/img/e4.png"> -->
+
+            </div>
+            <!-- Product sub cat listing -->
+            <div *ngFor="let topproductcat of topdata;let i = index">
+               <mat-card class="cardmain">
+                  <ion-card-title class="cardtitle">
+                     {{topproductcat.label}}
+                  </ion-card-title>
+                  <div class="ccn" style="display: flex;margin-top: 1em;" routerDirection="root">
+                     <ion-slides class="image-slider" loop="true" pager="false" [options]="slideOptsTwo" #slideWithNav2 style=" width: 100%; ">
+                        <ion-slide *ngFor="let img of topproductcat.SubCategory">
+                           <ion-grid style="border-bottom: none;">
+                              <ion-row>
+                                 <ion-col class="productcat" style="text-align: -webkit-center;margin: 0%;"
+                                    routerDirection="root">
+                                    <div>
+                                      <!--  <img (click)="productdata(img.id)"  style="height: 60px;" onerror="this.src='/assets/img/placeholder.png';"  [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="img.imagePath" > -->
+                                      <img (click)="productdata(img.id, img.label,1)"  style="height: 60px;" onerror="this.src='/assets/img/placeholder.png';"   [src]="img.imagePath" >
+                                    </div>
+                                    <div class=tx style="color: black;" (click)="productdata(img.id,img.label,1)">{{img.label}}
+                                    </div>
+                                 </ion-col>
+                              </ion-row>
+                           </ion-grid>
+                        </ion-slide>
+                     </ion-slides>
+                  </div>
+               </mat-card>
+            </div>
+
+         <!-- Brand section -->
+          <!--   <div>
+               <mat-card *ngIf="brand.length > 0">
+                  <ion-slides pager="false" [options]="slideOptsBrand" #slideWithNav2
+                  (ionSlideDidChange)="SlideDidChange(sliderBrand,slideWithNav2)">
+                  <ion-slide *ngFor="let s of sliderBrand.slidesItems">
+                     <ion-row>
+                        <ion-col class="productcat" style="text-align: -webkit-center;margin: 0%;"
+                           routerDirection="root">
+                              <img style="height: 60px;" onerror="this.src='/assets/img/placeholder.png';"  [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="s.imagePath">                        
+                        </ion-col>
+                     </ion-row>
+                  </ion-slide>
+                </ion-slides>                
+               </mat-card>
+            </div> -->
+
+            <!-- Advertise banner -->
+            <div>
+               <mat-card *ngIf="advs.length > 0" class="no-padding">
+
+               <ion-slides pager="false" [options]="slideOptsOne" #slideWithNav (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)">
+                  <ion-slide *ngFor="let adv of advs" >               
+                     <img  onerror="this.src='/assets/img/placeholder.png';"  [src]="adv.imagePath">
+                  </ion-slide>
+               </ion-slides>
+                   </mat-card>
+                  </div>
+         </div>
+      </ion-slide>
+
+     
+
+   </ion-slides>
+
+
+   <!-- Menu -->
+   <div class="menuu">
+      <ion-segment [(ngModel)]="page" color="secondary" style="box-shadow: -2px 0px 3px 1px #c6c6c6;">
+         <!-- <ion-segment-button class="icon"  value="0" (click)="selectedTab(0)" color="danger;">
+         <ion-icon  name="home-outline" class="iconcolor"></ion-icon>
+      </ion-segment-button> -->
+         <ion-segment-button class="icon" value="1" routerLink="/catalouge">
+            <ion-icon name="apps-outline" class="iconcolor icon-green-color"></ion-icon>
+            <p class="menutext icon-green-color">CATALOUGE</p>
+         </ion-segment-button>
+         <ion-segment-button class="icon" routerLink="/account">
+            <ion-icon name="person-outline" class="iconcolor icon-green-color"></ion-icon>
+            <p class="menutext icon-green-color">PROFILE</p>
+         </ion-segment-button>
+         <ion-segment-button class="icon" routerLink="/cart">
+            <ion-icon name="cart-outline" class="iconcolor icon-green-color"></ion-icon>
+            <p class="bagde-icon1" style="right: 10px;">{{cartService.cartItemCount}}</p>
+            <P class="menutext icon-green-color">CART</P>
+         </ion-segment-button>
+         <ion-segment-button class="icon" (click)="wishlistbtn()">
+            <ion-icon name="heart-outline" class="iconcolor icon-green-color"></ion-icon>
+            <p class="bagde-icon1" style="right: 10px;"> {{cartService.wishlistItemCount}}</p>
+            <P class="menutext icon-green-color">WISHLIST</P>
+         </ion-segment-button>
+      </ion-segment>
+   </div>
+   <br><br><br>
+
+</ion-content>
