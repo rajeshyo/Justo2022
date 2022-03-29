@@ -348,13 +348,14 @@
 <div class="file">
 
   <label style="color: black;">Visiting Card (Upload PDF or JPEG ; Max 3MB)</label>  
-<br>  <ion-button (click)="getcamera()"
+<br>  
+<!-- <ion-button (click)="getcamera()"
   id="myfile1"  name="myfile1"  
   formControlName="myfile1"  
   (change)="changeVcard($event)" 
   [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
   accept="image/jpeg, image/jpg,application/pdf">
-  <ion-icon name="camera-outline"></ion-icon></ion-button>
+  <ion-icon name="camera-outline"></ion-icon></ion-button> -->
   
   <!-- <input type="file" accept="image/*;capture=camera"
   id="myfile1"  name="myfile1"  
@@ -362,6 +363,22 @@
   (change)="changeVcard($event)" 
   [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
   accept="image/jpeg, image/jpg,application/pdf"> -->
+
+  <!-- 1<input type="file" accept="image/*" capture="capture">
+  2<input type="file" accept="image/*" capture="camera">
+  3<input type="file" accept="image/*;capture=camera">
+  4<input type="file" capture="user" accept="image/"/> -->
+
+  <!-- <button (click)="selectImage()">File</button> -->
+
+  <button (click)="opencamera()"
+  id="myfile1"  name="myfile1"  
+  formControlName="myfile1"  
+  (change)="changeVcard($event)" 
+  [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
+  accept="image/jpeg, image/jpg,application/pdf">
+  <ion-icon name="camera-outline"></ion-icon>
+</button>
 
   <ion-input style="margin-left: 4px;"  type="file" required id="myfile1"  name="myfile1"  formControlName="myfile1"  (change)="changeVcard($event)" [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"  accept="image/jpeg, image/jpg,application/pdf"></ion-input>
 
