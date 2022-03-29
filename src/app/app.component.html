@@ -27,14 +27,13 @@
       <ion-list class="menu-items" lines="none">
 
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index" >
-          <ion-item (click)="selectedIndex = i" routerDirection="root"  [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+          <ion-item (click)="selectedIndex = i" routerDirection="root"  [routerLink]="[p.url]" lines="none" detail="false" >
             <ion-icon slot="start" [ios]="p.icon" [md]="p.icon" class="icon-green-color"></ion-icon>
             <ion-label>{{ p.title }}</ion-label>
           </ion-item>
           
         </ion-menu-toggle>
    
-
         <div *ngIf="userlogin == 1">
           <ion-menu-toggle auto-hide="false" *ngIf="roleId == 'H11'">
         <ion-item auto-hide="false"  routerDirection="root"  routerLink="/dealer">
@@ -57,15 +56,27 @@
         </ion-item>
 </ion-menu-toggle>
 
-        <ion-item (click)="logout()" routerDirection="forward">
-          <ion-icon
-            slot="start"
-            src="/assets/icon/exit-outline.svg"
-            class="icon-green-color"
-          ></ion-icon
-          >Logout
-        </ion-item>
+     
       </div>
+        
+
+      
+      <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages1; let i = index" >
+        <ion-item (click)="selectedIndex = i" routerDirection="root"  [routerLink]="[p.url]" lines="none" detail="false" >
+          <ion-icon slot="start" [ios]="p.icon" [md]="p.icon" class="icon-green-color"></ion-icon>
+          <ion-label>{{ p.title }}</ion-label>
+        </ion-item>
+        
+      </ion-menu-toggle>
+
+      <ion-item (click)="logout()" routerDirection="forward">
+        <ion-icon
+          slot="start"
+          src="/assets/icon/exit-outline.svg"
+          class="icon-green-color"
+        ></ion-icon
+        >Logout
+      </ion-item>
       </ion-list>
     </ion-content>
 

@@ -72,16 +72,7 @@ export class AppComponent implements OnInit {
 
       icon: "calendar-outline",
     },
-    {
-      title: "Customer Support",
-      url: "/contactus",
-      icon: "chatbubbles-outline",
-    },
-    {
-      title: "Justo Policy",
-      url: "/justopolicy",
-      icon: "alert-circle-outline",
-    },
+    
     // {
     //   title: 'Support Ticket',
     //   url: '/support',
@@ -96,13 +87,25 @@ export class AppComponent implements OnInit {
 
     // }
   ];
+  public appPages1 =[
+    {
+      title: "Customer Support",
+      url: "/contactus",
+      icon: "chatbubbles-outline",
+    },
+    {
+      title: "Justo Policy",
+      url: "/justopolicy",
+      icon: "alert-circle-outline",
+    },
+  ];
   //public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   PackageName: "com.app.justo";
   UniqueDeviceID: string;
   countrycode: string = "91";
   whatsappnumber: string = "8050010030";
   url: string =
-    "https://wa.me/" + this.countrycode + this.whatsappnumber + "?text=Thanks for connecting JustO...";
+    "https://wa.me/" + this.countrycode + this.whatsappnumber + "?text=Thanks for Connecting JustO E-commerce Pvt Ltd, Mobile based B2B Consumer Durables Platform. Please let us know how can we help you?...";
 
   constructor(
     private platform: Platform,

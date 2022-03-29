@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
 import {SignupService} from '../services/signup.service'
 import { ToastService } from '../services/toast.service';
 import { environment } from '../../environments/environment';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { CartService } from '../cart.service';
 @Component({
   selector: 'app-search',
@@ -24,6 +24,18 @@ export class SearchPage implements OnInit {
   fdata=[];
   deals1=[];
   wishproducts= [];
+  finaldt:any;
+  title:any;
+  flag:any;
+  disable = 0;
+  topdata1=[];
+  topdata= [];
+  limit:any;
+  page:any;
+  loaddata = 0;
+  Error_message: string = "";
+  totalrecords: number = 0;
+  scrollTopButton = false;
   constructor(
     public cartService: CartService,
     public navCtrl: NavController,
@@ -35,9 +47,11 @@ export class SearchPage implements OnInit {
     private http: HttpClient,
     private delarapi:SignupService,
     private toastService: ToastService, 
+    public activatedRouter:ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    this.getwishlist();
   }
   wishlis1(id) {
     let url = environment.baseurl
@@ -98,10 +112,13 @@ export class SearchPage implements OnInit {
       if(product.isfilled == 0){
   
       product.isfilled =1;
+      this.cartService.getCartItemCount();
       }
   
       else if(product.isfilled ==1){
         product.isfilled =0;
+      this.cartService.getCartItemCount();
+  
       }
     }else{
   
@@ -144,50 +161,91 @@ export class SearchPage implements OnInit {
 
   } 
   
+  getwishlist() {
+
+  
+    let url = environment.baseurl
+    const session = localStorage.getItem('session');
+    const orderdetails = localStorage.getItem('orderdetails');
+
+    var formdata = new FormData();
+    formdata.append('_operation','getWishListProducts');
+    formdata.append('_session',session);
+
+    this.http.post( url,formdata,{})
+    .toPromise()
+    .then(response => {
+
+      this.data = response;
+      if(this.data.success == true) {
+      this.wishproducts =this.data.result.products;
+      console.log('this.wishproducts', this.wishproducts);
+
+      }
+
+      this.activatedRouter.queryParams.subscribe((data)=>{
+        this.finaldt = data.id;
+        this.title = data.title;
+        this.flag = data.flag;
+       if(this.flag == 1) {
+        this.search();
+       }
+
+       if(this.flag == 0) {
+        this.search();
+
+       }
+
+        if(this.finaldt != NaN || this.finaldt != undefined ){
+         
+        }
+      });
+
+    })
+    .catch(console.log);
+
+
+  }
+
   search() {
     let url = environment.baseurl
-    // const loginData = JSON.parse(localStorage.getItem('logindata'));
     const session = localStorage.getItem('session');
-    // console.log("userdata",this.userlog)
     var formdata = new FormData();
     formdata.append('_operation','getGlobalSearch');
     formdata.append('_session',session);
     formdata.append('value',this.userlog.username);
-  
+
+
     this.http.post( url,formdata,{})
     .toPromise()
     .then(response => {
+      this.disable = 1;
       this.data = response;
-      // this.VtCustProductCategory =this.data.result.VtCustProductCategory
-      // this.ProductSubCategory =this.data.result.ProductSubCategory
-      // this.Brands =this.data.result.Brands
-      
       this.Products =this.data.result.records
-
-      
-      console.log("searchdata",this.data.result.records);
+      console.log("productlistbycat",this.data.result.records);
 
       this.Products.forEach((items, index )=> {
       
-        items.isfilled= 0;
-        console.log('wish id', items.id);
-        if(this.wishproducts != null) {
-        var found = this.wishproducts.filter(e => e.id === items.id);
-        if (found.length > 0) {
-          items.isfilled= 1;
-          console.log(found[0]);
-        }
-      }                       
-  
-       });
+          items.isfilled= 0;
+          console.log('wish id', items.id);
+          if(this.wishproducts != null) {
+          var found = this.wishproducts.filter(e => e.id === items.id);
+          if (found.length > 0) {
+            items.isfilled= 1;
+            console.log(found[0]);
+          }
+        }                       
+    
+         });
 
-      // this.fdata=this.fdata.concat(this.VtCustProductCategory,this.ProductSubCategory,this.Brands,this.Products)
-      // console.log("mydata",this.fdata)
-      return this.Products;
-  
+         //console.log('totppppp',this.topdata1);
+    //  return this.topdata1;
     })
     .catch(console.log);
+
+
   }
+ 
   resetFilters_clear(ev: any) {
    
     let val = ev.target.value;

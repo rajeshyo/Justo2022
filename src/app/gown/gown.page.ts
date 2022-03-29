@@ -100,7 +100,51 @@ export class GownPage implements OnInit {
     .catch(console.log);
 
   }
+async toggleWishlist(product:any) {
+  let url = environment.baseurl
+  const session = localStorage.getItem('session');
+  const orderdetails = localStorage.getItem('orderdetails');
+  const loader =  await this.loadingCtrl.create({
+    duration: 3000
+  });
 
+  loader.present();
+ let value = "0";
+  if(product.isfilled == 0){
+    value = "1";
+  }
+  var formdata = new FormData();
+  formdata.append('_operation','addtowishlist');
+  formdata.append('_session',session);
+  formdata.append('record',product.id);
+  formdata.append('module',"Products");
+  formdata.append('value',value);
+
+  this.http.post( url,formdata,{})
+  .toPromise()
+  .then(response => {
+    loader.dismiss();
+    this.data = response;
+  if(this.data.success == true) {  
+    if(product.isfilled == 0){
+
+    product.isfilled =1;
+    this.cartService.getCartItemCount();
+    }
+
+    else if(product.isfilled ==1){
+      product.isfilled =0;
+    this.cartService.getCartItemCount();
+
+    }
+  }else{
+
+  }
+
+  })
+  .catch(console.log);
+
+}
   getwishlist() {
 
   
@@ -360,53 +404,14 @@ export class GownPage implements OnInit {
 
 
   } */
+
+
   productdetails(id){
   this.router.navigate(['shirtdetail'],{queryParams:{id:id}})
   console.log("router id",id)
 }
 
-async toggleWishlist(product:any) {
-  let url = environment.baseurl
-  const session = localStorage.getItem('session');
-  const orderdetails = localStorage.getItem('orderdetails');
-  const loader =  await this.loadingCtrl.create({
-    duration: 3000
-  });
 
-  loader.present();
- let value = "0";
-  if(product.isfilled == 0){
-    value = "1";
-  }
-  var formdata = new FormData();
-  formdata.append('_operation','addtowishlist');
-  formdata.append('_session',session);
-  formdata.append('record',product.id);
-  formdata.append('module',"Products");
-  formdata.append('value',value);
-
-  this.http.post( url,formdata,{})
-  .toPromise()
-  .then(response => {
-    loader.dismiss();
-    this.data = response;
-  if(this.data.success == true) {  
-    if(product.isfilled == 0){
-
-    product.isfilled =1;
-    }
-
-    else if(product.isfilled ==1){
-      product.isfilled =0;
-    }
-  }else{
-
-  }
-
-  })
-  .catch(console.log);
-
-}
 
 
 
