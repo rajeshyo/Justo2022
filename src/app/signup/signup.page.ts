@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { ActionSheetController } from '@ionic/angular';
+// import { WebView } from '@awesome-cordova-plugins/ionic-webview/ngx';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -54,11 +56,27 @@ loginform: FormGroup;
      this.page = index.toString();
  } 
 
+ cameraOptions: CameraOptions = {
+  quality: 100,
+  destinationType: this.camera.DestinationType.FILE_URI,
+  encodingType: this.camera.EncodingType.JPEG,
+  mediaType: this.camera.MediaType.PICTURE
+};
 
+galleryOptions: CameraOptions = {
+  quality: 100,
+  destinationType: this.camera.DestinationType.FILE_URI,
+  encodingType: this.camera.EncodingType.JPEG,
+  mediaType: this.camera.MediaType.PICTURE
+};
+
+photo: any ='';
 
 
   constructor(
     private camera: Camera,
+    // private webview: WebView, 
+    private alertController: AlertController,
     public actionSheetController: ActionSheetController,
     private file: File,
     public navCtrl: NavController,
@@ -145,7 +163,33 @@ loginform: FormGroup;
 
     });
   }
+  async choosePhotos() {
+    const alertBox = await this.alertController.create({
+      header: 'Choose From',
+      buttons: [
+        {
+          text: 'Camera',
+          handler: () => {
+            this.camera.getPicture(this.cameraOptions).then(res=>{
+              console.log('response = ', res);
+              this.photo = res;
+            });
+          }
+        },
+        {
+          text: 'Gallery',
+          handler: () => {
+            this.camera.getPicture(this.galleryOptions).then(res=>{
+              console.log('response = ', res);
+              this.photo = res;
+            });
 
+          }
+        },
+      ],
+    });
+    await alertBox.present();
+  }
 opencamera(){
   const options: CameraOptions = {
     quality: 100,

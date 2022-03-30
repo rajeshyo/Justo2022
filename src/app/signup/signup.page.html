@@ -367,10 +367,13 @@
   <!-- 1<input type="file" accept="image/*" capture="capture">
   2<input type="file" accept="image/*" capture="camera">
   3<input type="file" accept="image/*;capture=camera">
-  4<input type="file" capture="user" accept="image/"/> -->
+  4<input type="file" capture="user" accept="image/"/> 
+<input type="file" id="imageFile" capture="user" accept="image/*">-->
 
   <!-- <button (click)="selectImage()">File</button> -->
 
+  <!-- <input type="file" id="imageFile" capture="user" accept="image/*">
+  <br>
   <button (click)="opencamera()"
   id="myfile1"  name="myfile1"  
   formControlName="myfile1"  
@@ -378,7 +381,33 @@
   [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
   accept="image/jpeg, image/jpg,application/pdf">
   <ion-icon name="camera-outline"></ion-icon>
-</button>
+</button><br> -->
+
+<ion-button 
+
+>
+  <ion-icon name="camera-outline"></ion-icon>
+
+  <ion-input
+  (click)="choosePhotos()"
+            style="margin-left: 4px"
+            type="file"
+            required
+            id="myfile1"
+            name="myfile1"
+            formControlName="myfile1"
+            (change)="changeVcard($event)"
+            [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
+            accept="image/jpeg, image/jpg,application/pdf"
+          ></ion-input>
+</ion-button><br>
+
+<ion-icon name="camera-outline"
+(click)="choosePhotos()"
+id="myfile1"  name="myfile1"  
+  formControlName="myfile1"  
+  (change)="changeVcard($event)" 
+  [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"></ion-icon>
 
   <ion-input style="margin-left: 4px;"  type="file" required id="myfile1"  name="myfile1"  formControlName="myfile1"  (change)="changeVcard($event)" [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"  accept="image/jpeg, image/jpg,application/pdf"></ion-input>
 
