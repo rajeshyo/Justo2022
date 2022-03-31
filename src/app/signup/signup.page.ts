@@ -11,10 +11,10 @@ import { environment } from '../../environments/environment';
 import { PopoverController } from '@ionic/angular';
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
-import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { ActionSheetController } from '@ionic/angular';
-// import { WebView } from '@awesome-cordova-plugins/ionic-webview/ngx';
+
 
 @Component({
   selector: 'app-signup',
@@ -23,7 +23,7 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class SignupPage implements OnInit{
 
-@ViewChild('filechooser', { static: false }) fileChooserElementRef: ElementRef;
+
 delerform: FormGroup;
 vendorform: FormGroup;
 loginform: FormGroup;
@@ -56,27 +56,17 @@ loginform: FormGroup;
      this.page = index.toString();
  } 
 
- cameraOptions: CameraOptions = {
-  quality: 100,
-  destinationType: this.camera.DestinationType.FILE_URI,
-  encodingType: this.camera.EncodingType.JPEG,
-  mediaType: this.camera.MediaType.PICTURE
-};
+ croppedImagepath = "";
+ isLoading = false;
 
-galleryOptions: CameraOptions = {
-  quality: 100,
-  destinationType: this.camera.DestinationType.FILE_URI,
-  encodingType: this.camera.EncodingType.JPEG,
-  mediaType: this.camera.MediaType.PICTURE
-};
-
-photo: any ='';
+ imagePickerOptions = {
+   maximumImagesCount: 1,
+   quality: 50
+ };
 
 
   constructor(
     private camera: Camera,
-    // private webview: WebView, 
-    private alertController: AlertController,
     public actionSheetController: ActionSheetController,
     private file: File,
     public navCtrl: NavController,
@@ -163,68 +153,51 @@ photo: any ='';
 
     });
   }
-  async choosePhotos() {
-    const alertBox = await this.alertController.create({
-      header: 'Choose From',
-      buttons: [
-        {
-          text: 'Camera',
-          handler: () => {
-            this.camera.getPicture(this.cameraOptions).then(res=>{
-              console.log('response = ', res);
-              this.photo = res;
-            });
-          }
-        },
-        {
-          text: 'Gallery',
-          handler: () => {
-            this.camera.getPicture(this.galleryOptions).then(res=>{
-              console.log('response = ', res);
-              this.photo = res;
-            });
-
-          }
-        },
-      ],
+ 
+  pickImage(sourceType) {
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: sourceType,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      // encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+     return this.myfile1 =  imageData;
+      console.log("myimg",this.myfile1)
+    }, (err) => {
+      // Handle error
     });
-    await alertBox.present();
   }
-opencamera(){
-  const options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
+
+  async selectImage() {
+    const actionSheet = await this.actionSheetController.create({
+      header: "Select Image source",
+      buttons: [{
+        text: 'Load from Library',
+        handler: () => {
+          this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
+        }
+      },
+      {
+        text: 'Use Camera',
+        handler: () => {
+          this.pickImage(this.camera.PictureSourceType.CAMERA);
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      }
+      ]
+    });
+    await actionSheet.present();
   }
-  
-  this.camera.getPicture(options).then((imageData) => {
-   // imageData is either a base64 encoded string or a file URI
-   // If it's base64 (DATA_URL):
-   let base64Image = 'data:image/jpeg;base64,' + imageData;
-  }, (err) => {
-   // Handle error
-  });
-}
 
 
-  
-getcamera(){
-  console.log("hihi")
-  const options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  }
-  
-  this.camera.getPicture(options).then((imageData) => {
-  
-   let base64Image = 'data:image/jpeg;base64,' + imageData;
-  }, (err) => {
-  
-  });
-  }
+
+ 
   
   public noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || ' ').trim().length === 0;
@@ -820,7 +793,7 @@ phoneFormControl=  new FormControl('', [Validators.required, Validators.minLengt
     var formdata = new FormData();
     
     formdata.append('file_1_1',this.myfile);
-    formdata.append('file_1_2',this.myfile1);
+    formdata.append('file_1_2',this.user1.myfile1);
 
     formdata.append('_operation','loginAndFetchModules');
     formdata.append('accountname',this.user1.accountname);
