@@ -12,7 +12,8 @@ import { PopoverController } from '@ionic/angular';
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
-import { File } from '@ionic-native/file/ngx';
+// import { File } from '@ionic-native/file/ngx';
+import {File, IWriteOptions, FileEntry} from '@ionic-native/file/ngx';
 import { ActionSheetController } from '@ionic/angular';
 
 
@@ -164,7 +165,9 @@ loginform: FormGroup;
     }
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
-     return this.myfile1 =  imageData;
+      return this.myfile1 =  imageData;
+      // this.submitdealer( imageData)
+
       console.log("myimg",this.myfile1)
     }, (err) => {
       // Handle error
@@ -177,13 +180,13 @@ loginform: FormGroup;
       buttons: [{
         text: 'Load from Library',
         handler: () => {
-          this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
+          this.submitdealer(this.camera.PictureSourceType.PHOTOLIBRARY);
         }
       },
       {
         text: 'Use Camera',
         handler: () => {
-          this.pickImage(this.camera.PictureSourceType.CAMERA);
+          this.submitdealer(this.camera.PictureSourceType.CAMERA);
         }
       },
       {
@@ -195,6 +198,41 @@ loginform: FormGroup;
     await actionSheet.present();
   }
 
+  readFile(file: any) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const imgBlob = new Blob([reader.result], {
+        type: file.type
+      });
+      const formData = new FormData();
+      // formData.append('name', 'Hello');
+      // formData.append('file', imgBlob, file.name);
+      // this.delerform(formData).subscribe(dataRes => {
+      //   console.log(dataRes);
+      // });
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  takePicture(sourceType) {
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: sourceType,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      // encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      this.file.resolveLocalFilesystemUrl(imageData).then((entry: FileEntry) => {
+        entry.file(file => {
+          console.log(file);
+          this.readFile(file);
+        });
+      });
+    }, (err) => {
+      // Handle error
+    });
+  }
 
 
  
@@ -298,7 +336,7 @@ loginform: FormGroup;
 
   public createdeler = (delerFormValue) => {
     if (this.delerform.valid) {
-      this.submitdealer();
+      this.submitdealer(this.file);
     }
   }
 
@@ -773,12 +811,33 @@ phoneFormControl=  new FormControl('', [Validators.required, Validators.minLengt
     }
     //}
       }  
- async submitdealer() {
-
+ async submitdealer(file: any) {
+   console.log("asasdasd")
+  //  let yy = data.myfile1
+  // console.log("ssss",data.this.myfile1)
     // const params = new URLSearchParams(
     //   this.user1
     // );
     // const data=(params.toString());
+
+
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const imgBlob = new Blob([reader.result], {
+        type: file.type
+      });
+      const formData = new FormData();
+      // formData.append('name', 'Hello');
+      // formData.append('file', imgBlob, file.name);
+      // this.delerform(formData).subscribe(dataRes => {
+      //   console.log(dataRes);
+      // });
+    };
+    reader.readAsArrayBuffer(file);
+
+    
+
 
     const loader = await this.loadingCtrl.create({
       duration: 2000
@@ -793,7 +852,9 @@ phoneFormControl=  new FormControl('', [Validators.required, Validators.minLengt
     var formdata = new FormData();
     
     formdata.append('file_1_1',this.myfile);
-    formdata.append('file_1_2',this.user1.myfile1);
+    // formdata.append('file_1_2',this.user1.myfile1);
+    formdata.append('file_1_2',file.name);
+
 
     formdata.append('_operation','loginAndFetchModules');
     formdata.append('accountname',this.user1.accountname);

@@ -52,6 +52,21 @@
    </ion-grid> -->
 
 
+  
+   <ion-card class="ion-text-center empty" *ngIf="Products1.length ===0 ">
+    <ion-card-header>
+       <!-- <ion-icon class="cimage icon-green-color" name="cart-outline"></ion-icon> -->
+      <ion-card-title>No Search Result Found!</ion-card-title>
+      <ion-card-subtitle>Add items to it now.</ion-card-subtitle>
+    </ion-card-header>
+ 
+    <ion-card-content>
+      <ion-button class="bgcolor" expand="block" size="small" routerLink="/home">
+       Shop now
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
    <div class="cart-items">
     <ion-card *ngFor="let productlist of Products;let i = index">
       <ion-card-content>

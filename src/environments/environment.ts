@@ -11,7 +11,7 @@ export const environment = {
   signupurl1: "https://justoapp.co.in/justo/modules/Webforms/capture.php",
 
     baseurl:"https://justoapp.co.in/stagingcrm/modules/Mobile/api.php",
-  signupurl: "https://justoapp.co.in/stagingcrm/modules/Webforms/capture.php",
+    signupurl: "https://justoapp.co.in/stagingcrm/modules/Webforms/capture.php",
   production: false
 };
 

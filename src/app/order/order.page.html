@@ -8,49 +8,52 @@
 </ion-header>
 <ion-content [fullscreen]="true">
   <h3 class="ion-text-center" *ngIf="orderlistdata.length == 0 ">{{Error_message}}</h3>
-<div class="cart-items" *ngFor="let orderlist of orderlistdata;let i = index">
-  <ion-card >
-    <ion-card-content *ngFor="let listdata of orderlist.productDetails;let i = index">
-      <div class="item-img">
-        <img  class="img1"  onerror="this.src='/assets/img/placeholder.png';"  [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="listdata.imagePath"/>
-        <!-- <div class="bottom-left">{{listdata.label}}</div> -->
-      </div>
-
-      <div class="item-info">
-        <p>ORDER ID: <span class="span">{{orderlist.custsalesordername}}</span></p>
-        <p>Order Date: <span class="span">{{orderlist.createdtime | date: 'dd-MM-yyyy'}}</span></p>
-        <p>Order Value: <span class="span">₹ {{listdata.unit_price}} </span></p>
-
-
-        <p *ngIf="orderlist.orderStatus == 'Cancelled'" color="danger">Order Status: <span class="span1"  >{{orderlist.orderStatus}}</span></p>
-        <p *ngIf="orderlist.orderStatus == 'Delivered'" color="success">Order Status: <span class="span1"   >{{orderlist.orderStatus}}</span></p>
-        <p *ngIf="orderlist.orderStatus != 'Delivered' || orderlist.orderStatus == 'Cancelled'" style="color:#007185">Order Status: <span class="span1"  >{{orderlist.orderStatus}}</span></p>
-
-       
-
-        <span *ngIf="orderlist.invoiceURL">
-         <a href="orderlist.invoiceURL" download>
-          <ion-button class="btn"  fill="outline" (click)="download(orderlist.invoiceURL,orderlist.custsalesordername)">
-            <ion-icon class="icon" name="document-attach-outline"></ion-icon>&nbsp; Download
-        </ion-button>
-         </a> 
-        </span>
-          <ion-button expand="full"  (click)="reorder(orderlist.id)" 
-          
-          style=" font-size: 12px;  font-family: 'Open Sans', sans-serif; " class="bgcolor">
-          <ion-icon name="cart-outline" zoom="1" style="margin-bottom: 3px;"></ion-icon>
-          &nbsp; RE ORDER
-          </ion-button>
-      </div>
-    </ion-card-content>
-  
-    <p style="margin-left: 40%;">Total invoice Value: <span class="span">{{orderlist.total}}</span></p>
-
+  <div *ngFor="let orderlist of orderlistdata;let i = index">
+    <div class="cart-items" *ngIf="orderlist.productDetails.length !== 0 ">
+      <ion-card >
+        <ion-card-content *ngFor="let listdata of orderlist.productDetails;let i = index">
+          <div class="item-img">
+            <img  class="img1"  onerror="this.src='/assets/img/placeholder.png';"  [defaultImage]="'/assets/img/placeholder.png'" [lazyLoad]="listdata.imagePath"/>
+            <!-- <div class="bottom-left">{{listdata.label}}</div> -->
+          </div>
     
-  </ion-card>
+          <div class="item-info">
+            <p>ORDER ID: <span class="span">{{orderlist.custsalesordername}}</span></p>
+            <p>Order Date: <span class="span">{{orderlist.createdtime | date: 'dd-MM-yyyy'}}</span></p>
+            <p>Order Value: <span class="span">₹ {{listdata.unit_price}} </span></p>
+    
+    
+            <p *ngIf="orderlist.orderStatus == 'Cancelled'" color="danger">Order Status: <span class="span1"  >{{orderlist.orderStatus}}</span></p>
+            <p *ngIf="orderlist.orderStatus == 'Delivered'" color="success">Order Status: <span class="span1"   >{{orderlist.orderStatus}}</span></p>
+            <p *ngIf="orderlist.orderStatus != 'Delivered' || orderlist.orderStatus == 'Cancelled'" style="color:#007185">Order Status: <span class="span1"  >{{orderlist.orderStatus}}</span></p>
+    
+           
+    
+            <span *ngIf="orderlist.invoiceURL">
+             <a href="orderlist.invoiceURL" download>
+              <ion-button class="btn"  fill="outline" (click)="download(orderlist.invoiceURL,orderlist.custsalesordername)">
+                <ion-icon class="icon" name="document-attach-outline"></ion-icon>&nbsp; Download
+            </ion-button>
+             </a> 
+            </span>
+              <ion-button expand="full"  (click)="reorder(orderlist.id)" 
+              
+              style=" font-size: 12px;  font-family: 'Open Sans', sans-serif; " class="bgcolor">
+              <ion-icon name="cart-outline" zoom="1" style="margin-bottom: 3px;"></ion-icon>
+              &nbsp; NEW ORDER
+              </ion-button>
+          </div>
+        </ion-card-content>
+      
+        <p style="margin-left: 40%;">Total invoice Value: <span class="span">{{orderlist.total}}</span></p>
+    
+        
+      </ion-card>
+    
+     
+    </div>
+  </div>
 
- 
-</div>
 <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
   <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
   </ion-infinite-scroll-content>

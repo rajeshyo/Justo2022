@@ -138,9 +138,9 @@ export class ShirtdetailPage implements OnInit {
       if(this.data.success == true) {
       this.details =this.data.result.productsDetails
       let specs = this.details.cf_919;
-      this.specifications = specs.split(';');
+      this.specifications = specs.split(',');
       let featr = this.details.cf_927;
-      this.features = featr.split(';');
+      this.features = featr.split(',');
       console.log('this.feature',this.features);
       console.log("detailsproductdata",this.data.result.productsDetails);
       }

@@ -20,6 +20,7 @@ export class SearchPage implements OnInit {
   VtCustProductCategory:any[];
   ProductSubCategory:any[];
   Products:any[];
+  Products1=[];
   Brands=[];
   fdata=[];
   deals1=[];
@@ -52,6 +53,7 @@ export class SearchPage implements OnInit {
 
   ngOnInit() {
     this.getwishlist();
+    this.search();
   }
   wishlis1(id) {
     let url = environment.baseurl
@@ -221,7 +223,9 @@ export class SearchPage implements OnInit {
     .then(response => {
       this.disable = 1;
       this.data = response;
-      this.Products =this.data.result.records
+      this.Products =this.data.result.records;
+      this.Products1 =this.data.result.records
+
       console.log("productlistbycat",this.data.result.records);
 
       this.Products.forEach((items, index )=> {

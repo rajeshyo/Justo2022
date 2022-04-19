@@ -25,7 +25,7 @@
       Go
     </ion-button> -->
 
-    <ion-button (click)="applyFilters()" size="large"  class="go_button"  color="secondary" fill="outline"   >Go</ion-button>
+    <ion-button (click)="applyFilters()" size="large"  class="go_button"  style="color: #259b8d;" fill="outline"   >Go</ion-button>
   </ion-buttons>
 </ion-toolbar>
 <!-- <ion-searchbar [(ngModel)]="value" 
@@ -43,10 +43,16 @@
 
                         <ion-label>{{d.accountname}}</ion-label>
 
-                        <ion-text><img src="/assets/icon/phone.svg"> <span *ngIf="d.phone != '' && d.phone != 'undefined' "> 
+                        <ion-text>
+                          <ion-icon name="call" style="color: #259b8d;"></ion-icon>
+                          <!-- <img src="/assets/icon/phone.svg">  -->
+                          <span *ngIf="d.phone != '' && d.phone != 'undefined' "> 
                           <a href="tel:{{d.phone}}" style=" text-decoration: none;"> {{d.phone}}</a></span> <span *ngIf="d.phone == '' || d.phone == 'undefined' "> - </span> </ion-text>
 
-                        <ion-text><img src="/assets/icon/mail.svg"><span *ngIf="d.email1 != '' && d.email1 != 'undefined' ">
+                        <ion-text>
+                          <ion-icon name="mail" style="color: #259b8d;"></ion-icon>
+                          <!-- <img src="/assets/icon/mail.svg"> -->
+                          <span *ngIf="d.email1 != '' && d.email1 != 'undefined' ">
                           <a href="mailto:{{d.email1}}" style=" text-decoration: none;"> {{d.email1}}</a> </span> <span *ngIf="d.email1 == '' || d.email1 == 'undefined' "> - </span></ion-text>
 
                     </div>                    

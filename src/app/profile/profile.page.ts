@@ -40,7 +40,11 @@ export class ProfilePage implements OnInit {
 
       firstname: new FormControl('', [ Validators.required, Validators.maxLength(150)]),
       lastname: new FormControl('', [Validators.required, Validators.maxLength(150)]),
-      address: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [ Validators.required,Validators.maxLength(10) ]),
+      email: new FormControl('', [ Validators.required, ]),
+
+
+      // address: new FormControl('', [Validators.required]),
      
 
     });
@@ -85,7 +89,10 @@ async saveData() {
     formdata.append('userId', userID);
     formdata.append('first_name', this.userform.get('firstname').value);
     formdata.append('last_name', this.userform.get('lastname').value);
-    formdata.append('address_street', this.userform.get('address').value);
+    formdata.append('phone_work', this.userform.get('phone').value);
+    formdata.append('email1', this.userform.get('email').value);
+
+    // formdata.append('address_street', this.userform.get('address').value);
     formdata.append('imagename', this.profile);
 
         this.http.post( url,formdata,{})

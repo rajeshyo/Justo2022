@@ -85,6 +85,55 @@
 
         <div>
           <ion-item>
+            <ion-input type="text" placeholder="Phone Number"  [(ngModel)]="userInfo.phone_work"
+              formControlName="phone" name="phone" 
+              [class.error1]="!userform.controls.phone.valid && userform.controls.phone.dirty"></ion-input>
+            <ion-icon
+              name="call-outline"
+              slot="start"
+              class="icon ion-padding-start"
+            ></ion-icon>
+          </ion-item>
+
+          <ul class="error ion-padding-start text-danger" no-lines
+          *ngIf="( userform.get('phone').hasError('required') || 
+          userform.get('phone').hasError('maxlength') ) && userform.get('phone').touched">
+
+          <li *ngIf="userform.get('phone').hasError('minlength') && userform.get('phone').touched">
+            Mobile Number is required!
+          </li>
+          <li *ngIf="userform.get('phone').hasError('maxlength') && userform.get('phone').touched">
+           Mobile Number can't Be More Than 10 Character
+          </li>
+
+      </ul> 
+        </div>
+      
+        <div>
+          <ion-item>
+            <ion-input type="text" placeholder="Email"  [(ngModel)]="userInfo.email1"
+              formControlName="email" name="email" 
+              [class.error1]="!userform.controls.email.valid && userform.controls.email.dirty"></ion-input>
+            <ion-icon
+              name="mail-outline"
+              slot="start"
+              class="icon ion-padding-start"
+            ></ion-icon>
+           
+          </ion-item>
+
+          <ul class="error ion-padding-start text-danger" no-lines>
+
+          <li *ngIf="userform.get('email').hasError('required') && userform.get('email').touched">
+            Email is required!
+          </li>
+         
+
+      </ul> 
+        </div>
+
+        <!-- <div>
+          <ion-item>
             <ion-textarea type="text" placeholder="Address" class="form-control even" [(ngModel)]="userInfo.address_street"
             formControlName="address" name="address"
             [class.error1]="!userform.controls.address.valid && userform.controls.address.dirty"></ion-textarea>
@@ -101,7 +150,7 @@
               class="icon ion-padding-start"
             ></ion-icon>
           </ion-item>
-        </div>
+        </div> -->
       
     </ion-item-group>
   <!-- </ion-card> -->
