@@ -33,6 +33,7 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 
 import { Camera } from '@ionic-native/Camera/ngx';
 import { File } from '@ionic-native/file/ngx';
+// import { EmailComposer } from '@ionic-native/email-composer';
 @NgModule({
   declarations: [AppComponent, VerificationPipe,],
   entryComponents: [],

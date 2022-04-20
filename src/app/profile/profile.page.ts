@@ -38,8 +38,8 @@ export class ProfilePage implements OnInit {
     console.log(this.userInfo,localStorage.getItem("userid"));
     this.userform = new FormGroup({
 
-      firstname: new FormControl('', [ Validators.required, Validators.maxLength(150)]),
-      lastname: new FormControl('', [Validators.required, Validators.maxLength(150)]),
+      // firstname: new FormControl('', [ Validators.required, Validators.maxLength(150)]),
+      // lastname: new FormControl('', [Validators.required, Validators.maxLength(150)]),
       phone: new FormControl('', [ Validators.required,Validators.maxLength(10) ]),
       email: new FormControl('', [ Validators.required, ]),
 
@@ -87,8 +87,8 @@ async saveData() {
     formdata.append('_operation', 'updateProfile');
     formdata.append('_session', localStorage.getItem("session"));
     formdata.append('userId', userID);
-    formdata.append('first_name', this.userform.get('firstname').value);
-    formdata.append('last_name', this.userform.get('lastname').value);
+    // formdata.append('first_name', this.userform.get('firstname').value);
+    // formdata.append('last_name', this.userform.get('lastname').value);
     formdata.append('phone_work', this.userform.get('phone').value);
     formdata.append('email1', this.userform.get('email').value);
 

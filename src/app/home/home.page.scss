@@ -285,3 +285,19 @@ ion-card {
   .no-padding {
     padding: 0px;
   }
+
+  .timer{
+    display: flex;
+    background-color: #101111ed;
+    height: 223px;
+   
+    padding: 3px;
+    margin-left: -30px;
+    color: #04ff04;
+    border-radius: 32px 0px 1px 24px;
+  }
+  .timeritem{
+    flex-direction: column;
+    width: 29px;
+    font-size: 19px;
+  }

@@ -134,7 +134,7 @@
       </p >
     </span>
       <div class="wrap-input" *ngIf="visitdata.purpose == 'OTHERS'">
-      <textarea class="input" type="text" placeholder="Others"  maxlength="30"
+      <textarea class="input" type="text" placeholder="Others"  class="input upper"  maxlength="30"
       [(ngModel)]="visitdata.other_exaplanation"
           formControlName="other_exaplanation" name="other_exaplanation" cols="5"
           [class.error1]="!visitform.controls.other_exaplanation.valid && visitform.controls.other_exaplanation.dirty"></textarea>

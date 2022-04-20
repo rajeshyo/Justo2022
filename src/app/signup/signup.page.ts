@@ -11,11 +11,6 @@ import { environment } from '../../environments/environment';
 import { PopoverController } from '@ionic/angular';
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
-import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
-// import { File } from '@ionic-native/file/ngx';
-import {File, IWriteOptions, FileEntry} from '@ionic-native/file/ngx';
-import { ActionSheetController } from '@ionic/angular';
-
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +19,7 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class SignupPage implements OnInit{
 
-
+@ViewChild('filechooser', { static: false }) fileChooserElementRef: ElementRef;
 delerform: FormGroup;
 vendorform: FormGroup;
 loginform: FormGroup;
@@ -46,8 +41,6 @@ loginform: FormGroup;
   page = "0";
   pinerror="";
  
-
-
  selectedTab(index) {
      this.slider.slideTo(index);
  }
@@ -57,19 +50,7 @@ loginform: FormGroup;
      this.page = index.toString();
  } 
 
- croppedImagepath = "";
- isLoading = false;
-
- imagePickerOptions = {
-   maximumImagesCount: 1,
-   quality: 50
- };
-
-
   constructor(
-    private camera: Camera,
-    public actionSheetController: ActionSheetController,
-    private file: File,
     public navCtrl: NavController,
     public menuCtrl: MenuController,
     public toastCtrl: ToastController,
@@ -154,89 +135,6 @@ loginform: FormGroup;
 
     });
   }
- 
-  pickImage(sourceType) {
-    const options: CameraOptions = {
-      quality: 100,
-      sourceType: sourceType,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      // encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      return this.myfile1 =  imageData;
-      // this.submitdealer( imageData)
-
-      console.log("myimg",this.myfile1)
-    }, (err) => {
-      // Handle error
-    });
-  }
-
-  async selectImage() {
-    const actionSheet = await this.actionSheetController.create({
-      header: "Select Image source",
-      buttons: [{
-        text: 'Load from Library',
-        handler: () => {
-          this.submitdealer(this.camera.PictureSourceType.PHOTOLIBRARY);
-        }
-      },
-      {
-        text: 'Use Camera',
-        handler: () => {
-          this.submitdealer(this.camera.PictureSourceType.CAMERA);
-        }
-      },
-      {
-        text: 'Cancel',
-        role: 'cancel'
-      }
-      ]
-    });
-    await actionSheet.present();
-  }
-
-  readFile(file: any) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const imgBlob = new Blob([reader.result], {
-        type: file.type
-      });
-      const formData = new FormData();
-      // formData.append('name', 'Hello');
-      // formData.append('file', imgBlob, file.name);
-      // this.delerform(formData).subscribe(dataRes => {
-      //   console.log(dataRes);
-      // });
-    };
-    reader.readAsArrayBuffer(file);
-  }
-
-  takePicture(sourceType) {
-    const options: CameraOptions = {
-      quality: 100,
-      sourceType: sourceType,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      // encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    this.camera.getPicture(options).then((imageData) => {
-      this.file.resolveLocalFilesystemUrl(imageData).then((entry: FileEntry) => {
-        entry.file(file => {
-          console.log(file);
-          this.readFile(file);
-        });
-      });
-    }, (err) => {
-      // Handle error
-    });
-  }
-
-
- 
-  
   public noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || ' ').trim().length === 0;
     const isValid = !isWhitespace;
@@ -336,7 +234,7 @@ loginform: FormGroup;
 
   public createdeler = (delerFormValue) => {
     if (this.delerform.valid) {
-      this.submitdealer(this.file);
+      this.submitdealer();
     }
   }
 
@@ -811,33 +709,12 @@ phoneFormControl=  new FormControl('', [Validators.required, Validators.minLengt
     }
     //}
       }  
- async submitdealer(file: any) {
-   console.log("asasdasd")
-  //  let yy = data.myfile1
-  // console.log("ssss",data.this.myfile1)
+ async submitdealer() {
+
     // const params = new URLSearchParams(
     //   this.user1
     // );
     // const data=(params.toString());
-
-
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const imgBlob = new Blob([reader.result], {
-        type: file.type
-      });
-      const formData = new FormData();
-      // formData.append('name', 'Hello');
-      // formData.append('file', imgBlob, file.name);
-      // this.delerform(formData).subscribe(dataRes => {
-      //   console.log(dataRes);
-      // });
-    };
-    reader.readAsArrayBuffer(file);
-
-    
-
 
     const loader = await this.loadingCtrl.create({
       duration: 2000
@@ -852,9 +729,7 @@ phoneFormControl=  new FormControl('', [Validators.required, Validators.minLengt
     var formdata = new FormData();
     
     formdata.append('file_1_1',this.myfile);
-    // formdata.append('file_1_2',this.user1.myfile1);
-    formdata.append('file_1_2',file.name);
-
+    formdata.append('file_1_2',this.myfile1);
 
     formdata.append('_operation','loginAndFetchModules');
     formdata.append('accountname',this.user1.accountname);

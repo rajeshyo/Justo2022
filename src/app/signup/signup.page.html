@@ -348,98 +348,8 @@
 <div class="file">
 
   <label style="color: black;">Visiting Card (Upload PDF or JPEG ; Max 3MB)</label>  
-<br>  
-<!-- <ion-button (click)="getcamera()"
-  id="myfile1"  name="myfile1"  
-  formControlName="myfile1"  
-  (change)="changeVcard($event)" 
-  [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
-  accept="image/jpeg, image/jpg,application/pdf">
-  <ion-icon name="camera-outline"></ion-icon></ion-button> -->
-  
-  <!-- <input type="file" accept="image/*;capture=camera"
-  id="myfile1"  name="myfile1"  
-  formControlName="myfile1"  
-  (change)="changeVcard($event)" 
-  [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
-  accept="image/jpeg, image/jpg,application/pdf"> -->
+  <ion-input style="margin-left: 4px;"  type="file" required id="myfile1"  name="myfile1"  formControlName="myfile1"  (change)="changeVcard($event)" [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"  accept="image/jpeg, image/jpg,application/pdf"></ion-input>
 
-  <!-- 1<input type="file" accept="image/*" capture="capture">
-  2<input type="file" accept="image/*" capture="camera">
-  3<input type="file" accept="image/*;capture=camera">
-  4<input type="file" capture="user" accept="image/"/> 
-<input type="file" id="imageFile" capture="user" accept="image/*">-->
-
-  <!-- <button (click)="selectImage()">File</button> -->
-
-  <!-- <input type="file" id="imageFile" capture="user" accept="image/*">
-  <br>
-  <button (click)="opencamera()"
-  id="myfile1"  name="myfile1"  
-  formControlName="myfile1"  
-  (change)="changeVcard($event)" 
-  [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
-  accept="image/jpeg, image/jpg,application/pdf">
-  <ion-icon name="camera-outline"></ion-icon>
-</button><br> -->
-
-<!-- working code file -->
-
-<!-- <ion-icon name="camera-outline"
-(click)="choosePhotos()"
-id="myfile1"  name="myfile1"  
-  formControlName="myfile1"  
-  (change)="changeVcard($event)" 
-  [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"></ion-icon>
-
-  <ion-input style="margin-left: 4px;"  type="file" required id="myfile1"  name="myfile1"  formControlName="myfile1"  (change)="changeVcard($event)" [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"  accept="image/jpeg, image/jpg,application/pdf"></ion-input> -->
-
-
-<!-- 
-<ion-button>
-  <ion-icon name="camera-outline"></ion-icon>
-
-  <ion-input
-  (click)="choosePhotos()"
-            style="margin-left: 4px"
-            type="file"
-            required
-            id="myfile1"
-            name="myfile1"
-            formControlName="myfile1"
-            (change)="changeVcard($event)"
-            [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
-            accept="image/jpeg, image/jpg,application/pdf"
-          ></ion-input>
-</ion-button><br> -->
-
-<!-- <ion-button (click)="selectImage()"
-            id="myfile1"
-            name="myfile1"
-            formControlName="myfile1"
-            (change)="changeVcard($event)"
-            [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
-           >
-
-  <ion-icon name="camera-outline"></ion-icon>
-</ion-button> -->
-
-
-<ion-button shape="round" class="btn" (click)="selectImage()">
-  <ion-icon name="camera-outline"></ion-icon>
-  <!-- <ion-input class="profile-file" type="text"   
-  [(ngModel)]="user1.myfile1"
-  [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"
-  id="myfile1" name="myfile1" formControlName="myfile1" (change)="changeVcard($event)" 
-  accept="image/jpeg, image/jpg,application/pdf"></ion-input> -->
-</ion-button>
-<!-- {{myfile1}} -->
-
-
-
-  <!-- <ion-input  style="margin-left: 4px;" type="file" id="myfile1" 
-    formControlName="myfile1" name="myfile1" required [class.error1]="!delerform.controls.myfile1.valid && delerform.controls.myfile1.dirty"  accept="image/jpeg, image/jpg,application/pdf" (change)="changeGst($event)" ></ion-input>
-    -->
   <mat-error *ngIf="delerform.get('myfile1').hasError('required') && delerform.get('myfile1').touched" >
     Please upload Visiting Card
   </mat-error>
@@ -459,7 +369,7 @@ class="example-margin"  formControlName="termsAndConditions" name="termsAndCondi
           <button mat-raised-button color="secondary" >Sign Up</button>
         </mat-card-actions> -->
         <div class="button">
-          <ion-button type="submit" expand="full" class="bgcolor"  >Sign Up</ion-button>         
+          <ion-button type="submit" expand="full" class="bgcolor" [disabled]="!delerform.valid" >Sign Up</ion-button>         
         </div> 
       </form>
     </div>

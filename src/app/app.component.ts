@@ -19,6 +19,8 @@ import { AppUpdate } from "@ionic-native/app-update/ngx";
 import { CartService } from "./cart.service";
 import { AppVersion } from "@ionic-native/app-version/ngx";
 import { Market } from "@ionic-native/market/ngx";
+// import { EmailComposer } from '@ionic-native/email-composer';
+
 import {
   HttpClient,
   HttpHeaders,
@@ -123,7 +125,7 @@ export class AppComponent implements OnInit {
     private appVersion: AppVersion,
     private market: Market,
     private http: HttpClient,
-    // private emailComposer: EmailComposer
+    // private emailComposer: EmailComposer,
   ) {
     this.initializeApp();
 

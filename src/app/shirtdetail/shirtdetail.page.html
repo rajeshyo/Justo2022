@@ -85,9 +85,9 @@
       <div class="text1">
        
         <ion-row class="row-border" *ngFor="let spec of specifications;">
-            <ion-col size="5" class=" col-label" *ngIf="spec != '' && spec.split(',').length >= 2"><i class="fa fa-inr"></i> {{spec.split(',')[0]}}</ion-col>
-            <ion-col class="col-label" *ngIf="spec != ''&& spec.split(',').length < 2"><i class="fa fa-inr"></i> {{spec.split(',')[0]}}</ion-col>         
-               <ion-col size="7"  class="col-value" *ngIf="spec != '' && spec.split(',').length >= 2">  {{spec.split(',')[1]}}</ion-col>
+            <ion-col size="5" class=" col-label" *ngIf="spec != '' && spec.split(':').length >= 2"><i class="fa fa-inr"></i> {{spec.split(':')[0]}}</ion-col>
+            <ion-col class="col-label" *ngIf="spec != ''&& spec.split(':').length < 2"><i class="fa fa-inr"></i> {{spec.split(':')[0]}}</ion-col>         
+               <ion-col size="7"  class="col-value" *ngIf="spec != '' && spec.split(':').length >= 2">  {{spec.split(':')[1]}}</ion-col>
               </ion-row>
 
     </div>
@@ -98,9 +98,9 @@
       <div class="text1">
        
           <ion-row class="row-border" *ngFor="let feature of features;">
-              <ion-col size="5" class="col-label" *ngIf="feature != '' && feature.split(',').length >= 2"><i class="fa fa-inr"></i> {{feature.split(',')[0]}}</ion-col>
-              <ion-col class="col-label" *ngIf="feature != '' && feature.split(':').length < 2"><i class="fa fa-inr"></i> {{feature.split(',')[0]}}</ion-col>
-              <ion-col size="7"  class="col-value" *ngIf="feature != '' && feature.split(',').length >= 2">  {{feature.split(',')[1]}}</ion-col>
+              <ion-col size="5" class="col-label" *ngIf="feature != '' && feature.split(':').length >= 2"><i class="fa fa-inr"></i> {{feature.split(':')[0]}}</ion-col>
+              <ion-col class="col-label" *ngIf="feature != '' && feature.split(':').length < 2"><i class="fa fa-inr"></i> {{feature.split(':')[0]}}</ion-col>
+              <ion-col size="7"  class="col-value" *ngIf="feature != '' && feature.split(':').length >= 2">  {{feature.split(':')[1]}}</ion-col>
                 </ion-row>
 
       </div>

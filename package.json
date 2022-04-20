@@ -34,6 +34,7 @@
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/diagnostic": "^5.36.0",
     "@ionic-native/downloader": "^5.36.0",
+    "@ionic-native/email-composer": "^5.36.0",
     "@ionic-native/file": "^5.36.0",
     "@ionic-native/firebase-x": "^5.36.0",
     "@ionic-native/geolocation": "^5.36.0",
@@ -78,6 +79,8 @@
     "cordova-plugin-app-update": "^2.0.2",
     "cordova-plugin-app-version": "^0.1.12",
     "cordova-plugin-appversion": "^1.0.0",
+    "cordova-plugin-email": "^1.2.7",
+    "cordova-plugin-email-composer": "^0.10.0",
     "cordova-plugin-firebasex": "^14.0.0",
     "cordova-plugin-geolocation": "^4.1.0",
     "cordova-plugin-iroot": "^3.1.0",
@@ -147,7 +150,9 @@
       },
       "cordova-plugin-file": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-androidx-adapter": {}
+      "cordova-plugin-androidx-adapter": {},
+      "cordova-plugin-email-composer": {},
+      "cordova-plugin-email": {}
     },
     "platforms": [
       "android",
