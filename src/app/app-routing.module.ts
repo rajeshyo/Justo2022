@@ -193,7 +193,11 @@ const routes: Routes = [
   {
     path: 'reset-password-mobile',
     loadChildren: () => import('./reset-password-mobile/reset-password-mobile.module').then( m => m.ResetPasswordMobilePageModule)
+  },  {
+    path: 'outstanding',
+    loadChildren: () => import('./outstanding/outstanding.module').then( m => m.OutstandingPageModule)
   },
+
 
   
 

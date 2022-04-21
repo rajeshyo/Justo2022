@@ -50,6 +50,17 @@ export class AppComponent implements OnInit {
       url: "/home",
       icon: "home-outline",
     },
+    {
+      title: "Order History",
+      url: "/order",
+
+      icon: "calendar-outline",
+    },
+    {
+      title: "Outstanding Payment",
+      url: "/outstanding",
+      icon: "newspaper-outline",
+    },
     // {
     //   title: 'List',
     //   url: '/list',
@@ -68,12 +79,7 @@ export class AppComponent implements OnInit {
     //   direct: 'forward',
     //   icon: 'person-add'
     // },
-    {
-      title: "Order History",
-      url: "/order",
-
-      icon: "calendar-outline",
-    },
+    
     
     // {
     //   title: 'Support Ticket',

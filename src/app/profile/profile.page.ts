@@ -75,7 +75,7 @@ export class ProfilePage implements OnInit {
 
 async saveData() {
 
-    console.log(this.userform);
+    console.log("userform",this.userform);
     const loader = await this.loadingCtrl.create({
       duration: 2000
     });
@@ -89,7 +89,7 @@ async saveData() {
     formdata.append('userId', userID);
     // formdata.append('first_name', this.userform.get('firstname').value);
     // formdata.append('last_name', this.userform.get('lastname').value);
-    formdata.append('phone_work', this.userform.get('phone').value);
+    formdata.append('phone_mobile', this.userform.get('phone').value);
     formdata.append('email1', this.userform.get('email').value);
 
     // formdata.append('address_street', this.userform.get('address').value);
