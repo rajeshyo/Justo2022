@@ -267,8 +267,6 @@ home(){
 wishlistbtn(){
   this.navCtrl.navigateRoot('/wishlist');
 }
-
-
 search(){
   this.navCtrl.navigateRoot('/search');
 }
