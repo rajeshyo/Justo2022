@@ -134,18 +134,17 @@
       </p >
     </span>
       <div class="wrap-input" *ngIf="visitdata.purpose == 'OTHERS'">
-      <textarea class="input" type="text" placeholder="Others"  class="input upper"  maxlength="30"
+      <textarea class="input" type="text" placeholder="Others"  class="input upper"  maxlength="45" required
       [(ngModel)]="visitdata.other_exaplanation"
           formControlName="other_exaplanation" name="other_exaplanation" cols="5"
           [class.error1]="!visitform.controls.other_exaplanation.valid && visitform.controls.other_exaplanation.dirty"></textarea>
    
           <ul class="error ion-padding-start text-danger" no-lines
           *ngIf="( visitform.get('other_exaplanation').hasError('required')  ) && visitform.get('purpose').touched">
-
-          <li *ngIf="visitform.get('other_exaplanation').hasError('required') && visitform.get('other_exaplanation').touched">
-              Purpose is required!
-          </li>
       </ul>
+      <li *ngIf="visitform.get('other_exaplanation').hasError('required') && visitform.get('other_exaplanation').touched">
+        Purpose is required!
+    </li>
         </div>
 
       <ion-button class="btn" shape="round" size="small" (click)="getCurrentCoordinates()"

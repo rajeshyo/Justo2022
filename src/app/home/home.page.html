@@ -41,23 +41,38 @@
 
 <!--                <div class="blink" *ngIf="deals.length > 0"><span class="blog-graphic-text">Today's Deals!</span></div>
  -->
-     
- <ion-slides class="image-slider"  pager="false" [options]="slideOptsOne" #slideWithNav
-                  (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)"  style=" width: 100%;">
-                     <ion-slide style="position: relative;" *ngFor="let deal of deals">
-                     <img (click)="dealdata(deal.id, 'Deal Of The Day')" style="height:auto; width: 100%; "
-                        class="thumb-img" onerror="this.src='/assets/img/placeholder.png';" [src]="deal.imagePath">
-                    <!--  <div class="dealtimer"> <span *ngIf="deal.timeLeft.d > 0">{{deal.timeLeft.d}}d </span>{{deal.timeLeft.h}}h {{deal.timeLeft.i}}m</div> -->
-                     <!-- <div class="dealtimer"></div> -->
-                     
-                     <div class="timer">
-                        <div class="timeritem">
-                          <p style="margin-top:32px; font: size 20px;">{{deal.timer}}</p> 
-                        </div>
-                     </div>
-                     
-                  </ion-slide>
-               </ion-slides>
+
+ <!-- <div class="timer1" *ngFor="let deal of deals">
+   <div class="timeritem1">
+     <p *ngIf="deal.timer==deal.timer">{{deal.timer}}</p> 
+   </div>
+</div> -->
+
+<div class="contener">
+   <div class="item item2">
+      <ion-slides class="image-slider"  pager="false" [options]="slideOptsOne" #slideWithNav
+      (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)"  style=" width: 100%;">
+         <ion-slide style="position: relative;" *ngFor="let deal of deals">
+            <div class="timertime">
+         <b style="font-size: 20px;">{{deal.timer}}</b>
+            </div>
+         <img (click)="dealdata(deal.id, 'Deal Of The Day')" style="height:auto; width: 100%; "
+            class="thumb-img" onerror="this.src='/assets/img/placeholder.png';" [src]="deal.imagePath">
+        <!--  <div class="dealtimer"> <span *ngIf="deal.timeLeft.d > 0">{{deal.timeLeft.d}}d </span>{{deal.timeLeft.h}}h {{deal.timeLeft.i}}m</div> -->
+         <!-- <div class="dealtimer"></div> -->
+         
+         
+      </ion-slide>
+
+   </ion-slides>
+   </div>
+</div>
+
+
+ <div class="test">
+
+ </div>
+
 
             </div>
 

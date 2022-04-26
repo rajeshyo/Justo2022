@@ -39,11 +39,13 @@
              </a> 
             </span>
               <ion-button expand="full"  (click)="reorder(orderlist.id)" 
-              
+              *ngIf="listdata.liveinapp !== '0'"
               style=" font-size: 12px;  font-family: 'Open Sans', sans-serif; " class="bgcolor">
               <ion-icon name="cart-outline" zoom="1" style="margin-bottom: 3px;"></ion-icon>
               &nbsp; NEW ORDER
               </ion-button>
+            <p ><span style="color: red;" class="span" *ngIf="listdata.liveinapp == '0'">Out Of Stock</span></p>
+
           </div>
         </ion-card-content>
       
