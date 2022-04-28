@@ -116,7 +116,7 @@ export class VisitPage implements OnInit {
  */    //values.cf_861 = "new delhi"; // check in location
     values.cf_863 = this.address; // check out location
     values.assigned_user_id = userID;
-    values.cf_972 = this.visitform.get('dealername').value; // Dealer name
+    values.cf_972 = this.visitform.get('dealername').value.toLocaleUpperCase(); // Dealer name
     values.visit_purpose = this.visitform.get('purpose').value; // purpose of visit
     values.other_exaplanation = this.visitform.get('other_exaplanation').value; // purpose of visit
     values.cf_978 = this.latitude;

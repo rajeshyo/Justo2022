@@ -54,7 +54,30 @@
                           <!-- <img src="/assets/icon/mail.svg"> -->
                           <span *ngIf="d.email1 != '' && d.email1 != 'undefined' ">
                           <a href="mailto:{{d.email1}}" style=" text-decoration: none;"> {{d.email1}}</a> </span> <span *ngIf="d.email1 == '' || d.email1 == 'undefined' "> - </span></ion-text>
-
+                        
+                          <ion-label class="outstanding">
+                            Total Billed
+                            <span *ngIf="d.email1 != '' && d.email1 != 'undefined' ">
+                          {{d.phone}}
+                          </span> 
+                          <span *ngIf="d.email1 == '' || d.email1 == 'undefined' "> - </span>
+                        </ion-label>
+                          
+                        <ion-label class="outstanding">
+                          Total Paid
+                          <span *ngIf="d.email1 != '' && d.email1 != 'undefined' ">
+                        {{d.phone}}
+                        </span> 
+                        <span *ngIf="d.email1 == '' || d.email1 == 'undefined' "> - </span>
+                      </ion-label>
+                      <ion-label class="outstanding">
+                        Total Due
+                        <span *ngIf="d.email1 != '' && d.email1 != 'undefined' ">
+                      {{d.phone}}
+                      </span> 
+                      <span *ngIf="d.email1 == '' || d.email1 == 'undefined' "> - </span>
+                    </ion-label>
+                          
                     </div>                    
                 </ion-col>
                

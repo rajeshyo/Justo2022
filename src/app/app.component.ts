@@ -56,11 +56,11 @@ export class AppComponent implements OnInit {
 
       icon: "calendar-outline",
     },
-    {
-      title: "Outstanding Payment",
-      url: "/outstanding",
-      icon: "newspaper-outline",
-    },
+    // {
+    //   title: "Outstanding Payment",
+    //   url: "/outstanding",
+    //   icon: "newspaper-outline",
+    // },
     // {
     //   title: 'List',
     //   url: '/list',
@@ -96,6 +96,11 @@ export class AppComponent implements OnInit {
     // }
   ];
   public appPages1 =[
+    // {
+    //   title: "Outstanding Payment",
+    //   url: "/outstanding",
+    //   icon: "newspaper-outline",
+    // },
     {
       title: "Customer Support",
       url: "/contactus",

@@ -12,9 +12,24 @@ export class OutstandingPage implements OnInit {
     constructor(
       private http: HttpClient,
     ) { }
-
+  userdata: any;
+  userlogin = 0;
+  roleId: any;
   ngOnInit() {
-    this.outstandinglist()
+    const outstanding = localStorage.getItem('logindata');
+    console.log("outstanding",outstanding)
+    // this.outstandinglist()
+    this.localdata()
+  }
+
+  localdata() {
+    const loginData = JSON.parse(localStorage.getItem("logindata"));
+    this.userdata = loginData;
+    if (this.userdata != null) {
+      this.userlogin = 1;
+      this.roleId = localStorage.getItem("roleid");
+    }
+    return this.userdata;
   }
 
   outstandinglist() {

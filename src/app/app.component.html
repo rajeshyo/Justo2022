@@ -58,7 +58,22 @@
 
      
       </div>
-        
+
+      <div *ngIf="userlogin == 1">
+        <ion-menu-toggle auto-hide="false" *ngIf="roleId == 'H14'">
+      <ion-item auto-hide="false"  routerDirection="root"  routerLink="/outstanding">
+        <ion-icon
+          slot="start"
+          src="/assets/icon/newspaper-outline.svg"
+          class="newspaper-outline"
+        ></ion-icon
+        >Outstanding Payment
+      </ion-item>
+    </ion-menu-toggle>
+   
+
+   
+    </div>
 
       
       <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages1; let i = index" >
