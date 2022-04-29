@@ -68,7 +68,7 @@ export class DealerPage implements OnInit {
     const session = localStorage.getItem('session');
     // console.log("userdata",this.userlog)
     var formdata = new FormData();
-    formdata.append('_operation','listModuleRecords');
+    formdata.append('_operation','justolistModuleRecords');
     formdata.append('_session',session);
     formdata.append('module', 'Accounts');
     formdata.append('page', this.page);

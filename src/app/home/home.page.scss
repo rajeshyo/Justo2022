@@ -306,6 +306,7 @@ ion-card {
   .image-slider{
     display: flex;
     flex-direction: column;
+    background-color: #898b8787;
   }
   .swiper-slide {
     flex-direction: column;
@@ -316,4 +317,9 @@ ion-card {
     margin-top: 0px;
     width: 100%;
     background-color: #898b8787;
+    display: contents !important;
   }
+  .swiper-slide[_ngcontent-jte-c169]:not(.swiper-slide-active) > div[_ngcontent-jte-c169] {
+    display: contents !important;
+}
+
