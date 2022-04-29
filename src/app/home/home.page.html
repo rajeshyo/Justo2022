@@ -50,11 +50,11 @@
 
 <div class="contener">
    <div class="item item2">
-      <ion-slides class="image-slider"  pager="false" [options]="slideOptsOne" #slideWithNav
+      <ion-slides class="image-slider dealsslider"  pager="false" [options]="slideOptsOne" #slideWithNav
       (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)"  style=" width: 100%;">
          <ion-slide style="position: relative;" *ngFor="let deal of deals">
             <div class="timertime">
-         <b style="font-size: 25px;">{{deal.timer}}</b>
+         <b style="font-size: 25px;margin: 10px;">{{deal.timer}}</b>
             </div>
          <img (click)="dealdata(deal.id, 'Deal Of The Day')" style="height:auto; width: 100%; "
             class="thumb-img" onerror="this.src='/assets/img/placeholder.png';" [src]="deal.imagePath">
