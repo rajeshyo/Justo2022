@@ -144,28 +144,18 @@
       <ion-col size="6" class="col-item"><b>TOTAL</b></ion-col>
       <ion-col size="6" class="ion-text-end"> <b> <i class="fa fa-inr"> </i>{{ totalFinal | currency:'INR'}} </b> </ion-col>
     </ion-row>
-    
-   
-   
+       
 </mat-card> 
 
-     
    </div>
-
-
-
-   
 </ion-content>
 
 <ion-toolbar *ngIf="cart.length > 0">
- 
       <div class="container" style="margin-bottom: .3em;">
          <div class="pull-right"  >
-
            <!-- <ion-button color="dark" (click)="placeorder()" routerDirection="root" style="margin-left: 37px;width: 80%; font-size: 12px; height: 2.5em;">Place Order</ion-button>  -->
            <ion-button style="padding: 1px;" (click)="placeorder()" expand="full" class="bgcolor">Place Order
          </ion-button>
       </div>
          </div>
-     
 </ion-toolbar>

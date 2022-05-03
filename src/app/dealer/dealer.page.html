@@ -57,25 +57,25 @@
                         
                           <ion-label class="outstanding">
                             Total Billed
-                            <span *ngIf="d.email1 != '' && d.email1 != 'undefined' ">
-                          {{d.phone}}
+                            <span >
+                          {{d.invoicetotal | currency: 'INR'}}
                           </span> 
-                          <span *ngIf="d.email1 == '' || d.email1 == 'undefined' "> - </span>
+                        
                         </ion-label>
                           
                         <ion-label class="outstanding">
                           Total Paid
-                          <span *ngIf="d.email1 != '' && d.email1 != 'undefined' ">
-                        {{d.phone}}
+                          <span >
+                        {{d.paymenttotal | currency: 'INR'}}
                         </span> 
-                        <span *ngIf="d.email1 == '' || d.email1 == 'undefined' "> - </span>
+                      
                       </ion-label>
                       <ion-label class="outstanding">
                         Total Due
-                        <span *ngIf="d.email1 != '' && d.email1 != 'undefined' ">
-                      {{d.phone}}
+                        <span >
+                      {{d.balance | currency: 'INR'}}
                       </span> 
-                      <span *ngIf="d.email1 == '' || d.email1 == 'undefined' "> - </span>
+                    
                     </ion-label>
                           
                     </div>                    
