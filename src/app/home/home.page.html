@@ -56,8 +56,16 @@
             <div class="timertime">
          <b style="font-size: 25px;margin: 10px;">{{deal.timer}}</b>
             </div>
-         <img (click)="dealdata(deal.id, 'Deal Of The Day')" style="height:auto; width: 100%; "
+         <img (click)="dealdata(deal.id, 'Deal Of The Day')" style="height:auto; width: 100%; " *ngIf="deal.videoPath==null"
             class="thumb-img" onerror="this.src='/assets/img/placeholder.png';" [src]="deal.imagePath">
+
+            <!-- This is video code -->
+            <video width="100%"  controls *ngIf="deal.imagePath==null">
+               <source src="../../assets/demo.mp4" type="video/mp4">
+             </video>
+<!-- end video code -->
+
+
         <!--  <div class="dealtimer"> <span *ngIf="deal.timeLeft.d > 0">{{deal.timeLeft.d}}d </span>{{deal.timeLeft.h}}h {{deal.timeLeft.i}}m</div> -->
          <!-- <div class="dealtimer"></div> -->
       </ion-slide>

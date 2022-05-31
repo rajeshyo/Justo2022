@@ -767,9 +767,9 @@ this.delerform.patchValue({
       this.data = response;
       if (this.data.success == true) { 
 
-        this.toastService.presentToast('User registerd successfully.');
+      this.toastService.presentToast('User registerd successfully.');
       this.delerform.reset();
-  this.segment = 0;
+      this.segment = 0;
      //   this.navCtrl.navigateRoot('/login');
 
     
